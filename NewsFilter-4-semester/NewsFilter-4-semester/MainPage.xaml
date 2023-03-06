@@ -1,41 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsFilter_4_semester.MainPage">
+             x:Class="NewsFilter_4_semester.MainPage"
+             Shell.NavBarIsVisible="False">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid ColumnDefinitions="*, *"
+          RowDefinitions="50, 50, *"
+          VerticalOptions="Start">
+        <Grid BackgroundColor="Gray"
+              Grid.ColumnSpan="2">
+            <Image Source="dotnet_bot.svg"
+                   HorizontalOptions="Start">
+            </Image>
+            <Button Text="Settings"
+                    BackgroundColor="Gray"
+                    HeightRequest="50"
+                    HorizontalOptions="End">
+            </Button>
+            <AbsoluteLayout HeightRequest="100"
+                            VerticalOptions="Start"
+                            BackgroundColor="Gray"
+                            ZIndex="-1">
+                <Button Text="Trending"
+                        WidthRequest="75"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50">
+                    
+                </Button>
+                <Button Text="World"
+                        WidthRequest="75"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                </Button>
+                <Button Text="Technology"
+                        WidthRequest="100"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50">
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+                </Button>
+            </AbsoluteLayout>
+        </Grid>
+    </Grid>
 
 </ContentPage>
