@@ -12,7 +12,12 @@ public partial class SettingsPage : ContentPage
 
         void ThemeSwitch_Toggled(object sender, EventArgs e)
         {
-            if (e.Value)
+            Switch themeSwitch = (Switch)sender;
+            if (themeSwitch.IsToggled)
+            {
+                Application.Current.Resources = new ResourceDictionaryDark();
+            }
+            else
             {
                 Application.Current.Resources = new ResourceDictionaryLight();
             }
