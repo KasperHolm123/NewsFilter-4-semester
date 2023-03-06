@@ -1,5 +1,3 @@
-using Android.OS.Strictmode;
-using Java.Lang;
 using NewsFilter_4_semester.Resources.Themes;
 
 namespace NewsFilter_4_semester.Pages;
@@ -37,5 +35,10 @@ public partial class SettingsPage : ContentPage
         {
             ThemeSwitch.IsToggled = false;
         }
+    }
+
+    private void OnToggled(object sender, ToggledEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
