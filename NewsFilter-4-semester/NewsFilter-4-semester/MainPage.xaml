@@ -55,8 +55,7 @@
                      Margin="0,0,0,20"
                      Grid.Row="2"
                      Grid.ColumnSpan="2"
-                     Padding="5"
-                     BindableLayout.ItemsSource="{Binding NewsItems}">
+                     Padding="5">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="model:Article">
                     <Frame BackgroundColor="#7a7a7a" CornerRadius="10">
