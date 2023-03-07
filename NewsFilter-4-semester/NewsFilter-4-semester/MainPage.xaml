@@ -1,7 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsFilter_4_semester.MainPage">
+             x:Class="NewsFilter_4_semester.MainPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid ColumnDefinitions="*, *"
+          RowDefinitions="50, 50, *"
+          VerticalOptions="Start">
+        <Grid BackgroundColor="Gray"
+              Grid.ColumnSpan="2">
+            <Image Source="dotnet_bot.svg"
+                   HorizontalOptions="Start">
+            </Image>
+            <Button Text="Settings"
+                    BackgroundColor="Gray"
+                    HeightRequest="50"
+                    HorizontalOptions="End">
+            </Button>
+            <AbsoluteLayout HeightRequest="100"
+                            VerticalOptions="Start"
+                            BackgroundColor="Gray"
+                            ZIndex="-1">
+                <Button Text="Trending"
+                        WidthRequest="75"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50">
+                    
+                </Button>
+                <Button Text="World"
+                        WidthRequest="75"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50">
+
+                </Button>
+                <Button Text="Technology"
+                        WidthRequest="100"
+                        FontSize="11"
+                        BackgroundColor="Gray"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50">
+
+                </Button>
+            </AbsoluteLayout>
+        </Grid>
+    </Grid>
 
     <StackLayout BackgroundColor="#383838" Margin="0,0,0,20" Padding="5"
                  BindableLayout.ItemsSource="{Binding NewsItems}">
