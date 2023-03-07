@@ -49,4 +49,17 @@
         </Grid>
     </Grid>
 
+    <StackLayout BackgroundColor="#383838" Margin="0,0,0,20" Padding="5"
+                 BindableLayout.ItemsSource="{Binding NewsItems}">
+        <Frame BackgroundColor="#7a7a7a" CornerRadius="10">
+            <StackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="5">
+                <Border StrokeShape="RoundRectangle 10" Stroke="gray">
+                    <Image Source="https://cdn.mos.cms.futurecdn.net/YDDJGnLfoCvjEPU9PLCkj9-970-80.jpg.webp" Aspect="AspectFill"  />
+                </Border>
+                <Label TextColor="White" Text="The SteelSeries Destiny 2: Lightfall themed peripherals are gorgeous" FontSize="Medium" FontAttributes="Bold"/>
+                <Label MaxLines="5" TextColor="White" Text="Here at PC Gamer I review a bunch of peripherals and hardware all designed to make PC gaming sing. Peripherals especially have come a long way since the early days. There's countless brands out there all pushing their own ideas, which is why it's odd to me that most peripherals still come in the same boring combination of colours and styles. Those of us wanting more colourful accessories often have to rely on RGB lighting to get us through, but sometimes themed releases have our backs." FontSize="Small"/>
+                <Button Text="Read More" BackgroundColor="#383838" TextColor="White" CornerRadius="5" Margin="0,10,0,0"/>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </ContentPage>
