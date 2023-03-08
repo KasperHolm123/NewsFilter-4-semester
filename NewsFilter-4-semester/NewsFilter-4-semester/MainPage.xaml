@@ -19,7 +19,9 @@
             <Button Text="Settings"
                     BackgroundColor="Gray"
                     HeightRequest="50"
-                    HorizontalOptions="End">
+                    HorizontalOptions="End"
+                    Command="{Binding ChangePageCommand}"
+                    CommandParameter="SettingsPage">
             </Button>
             <AbsoluteLayout HeightRequest="100"
                             VerticalOptions="Start"
@@ -30,7 +32,9 @@
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50">
+                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="Trending">
 
                 </Button>
                 <Button Text="World"
@@ -38,7 +42,9 @@
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50">
+                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="World">
 
                 </Button>
                 <Button Text="Technology"
@@ -46,7 +52,9 @@
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50">
+                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="Technology">
 
                 </Button>
             </AbsoluteLayout>
