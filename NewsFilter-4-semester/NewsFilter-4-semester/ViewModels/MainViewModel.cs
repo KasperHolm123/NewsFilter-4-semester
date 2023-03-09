@@ -32,13 +32,21 @@ namespace NewsFilter_4_semester.ViewModels
             Articles.Add(new Article.Channel { Title = "title9", Description = "description9" });
         }
 
-
+        
         [RelayCommand]
         public async Task ChangeShownArticles(string type)
         {
             switch (type)
             {
-                //TODO: Add case for each type of news (sports, technology etc.)
+                case "Trending":
+                    //Articles = XMLReader.Trending();
+                    break;
+                case "World":
+                    //Articles = XMLReader.World();
+                    break;
+                case "Technology":
+                    //Articles = XMLReader.Technology();
+                    break;
                 default:
                     break;
             }
