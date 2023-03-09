@@ -4,7 +4,10 @@
              xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:NewsFilter_4_semester"
+             Shell.NavBarIsVisible="False"
              mc:Ignorable="d"
+             xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
+             xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:Class="NewsFilter_4_semester.MainPage">
 
     <Grid ColumnDefinitions="*, *"
@@ -63,9 +66,10 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2">
             <StackLayout BindableLayout.ItemsSource="{Binding Articles}"
-             Grid.Row="2"
-             Grid.Column="0"
-             Grid.ColumnSpan="2" BackgroundColor="#383838">
+                         Grid.Row="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         BackgroundColor="#383838">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#7a7a7a" CornerRadius="10" Margin="10">
