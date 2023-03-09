@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsFilter_4_semester.MainPage"
-             Shell.NavBarIsVisible="False"
-             xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
-             xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
-             x:DataType="viewmodels:MainViewModel">
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:NewsFilter_4_semester"
+             mc:Ignorable="d"
+             x:Class="NewsFilter_4_semester.MainPage">
 
     <Grid ColumnDefinitions="*, *"
           RowDefinitions="50, 50, *"
@@ -59,25 +59,36 @@
                 </Button>
             </AbsoluteLayout>
         </Grid>
-        <StackLayout BackgroundColor="#383838"
-                     Margin="0,0,0,20"
-                     Grid.Row="2"
-                     Grid.ColumnSpan="2"
-                     Padding="5">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="model:Article">
-                    <Frame BackgroundColor="#7a7a7a" CornerRadius="10">
-                        <StackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="5">
-                            <Border StrokeShape="RoundRectangle 10" Stroke="gray">
-                                <Image Source="https://cdn.mos.cms.futurecdn.net/YDDJGnLfoCvjEPU9PLCkj9-970-80.jpg.webp" Aspect="AspectFill"  />
-                            </Border>
-                            <Label TextColor="White" Text="The SteelSeries Destiny 2: Lightfall themed peripherals are gorgeous" FontSize="Medium" FontAttributes="Bold"/>
-                            <Label MaxLines="5" TextColor="White" Text="Here at PC Gamer I review a bunch of peripherals and hardware all designed to make PC gaming sing. Peripherals especially have come a long way since the early days. There's countless brands out there all pushing their own ideas, which is why it's odd to me that most peripherals still come in the same boring combination of colours and styles. Those of us wanting more colourful accessories often have to rely on RGB lighting to get us through, but sometimes themed releases have our backs." FontSize="Small"/>
-                            <Button Text="Read More" BackgroundColor="#383838" TextColor="White" CornerRadius="5" Margin="0,10,0,0"/>
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+        <ScrollView Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2">
+            <StackLayout BindableLayout.ItemsSource="{Binding Articles}"
+             Grid.Row="2"
+             Grid.Column="0"
+             Grid.ColumnSpan="2" BackgroundColor="#383838">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#7a7a7a" CornerRadius="10" Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" Padding="0" Margin="0" WidthRequest="100" HeightRequest="100">
+                                    <Image Source="https://cdn.mos.cms.futurecdn.net/YDDJGnLfoCvjEPU9PLCkj9-970-80.jpg.webp" Aspect="AspectFill" />
+                                </Border>
+
+                                <StackLayout Grid.Column="1" Margin="10, 0, 0, 0" Spacing="5">
+                                    <Label TextColor="#fff" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold"/>
+                                    <Label TextColor="#fff" Text="{Binding Description}" FontSize="Small" MaxLines="5"/>
+                                    <Button x:Name="TestButton" Text="Read More" BackgroundColor="#383838" TextColor="#fff" CornerRadius="5" Margin="0, 10, 0, 0"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>

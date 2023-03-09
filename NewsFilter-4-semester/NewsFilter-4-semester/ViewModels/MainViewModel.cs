@@ -1,3 +1,7 @@
+﻿using NewsFilter_4_semester.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 ﻿using CommunityToolkit.Mvvm.Input;
 using NewsFilter_4_semester.Models;
 using NewsFilter_4_semester.Pages;
@@ -11,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace NewsFilter_4_semester.ViewModels
 {
+    
     public partial class MainViewModel
     {
         public ObservableCollection<Article> Articles { get; set; }
