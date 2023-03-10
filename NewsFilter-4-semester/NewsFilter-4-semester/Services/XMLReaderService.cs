@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using static NewsFilter_4_semester.Models.Article;
 using System.ServiceModel.Syndication;
+using System.Xml;
+using System.Diagnostics;
 
 namespace NewsFilter_4_semester.Services
 {
@@ -15,16 +17,26 @@ namespace NewsFilter_4_semester.Services
     {
 
 
-        public static Rss Trending()
+        public static void Trending()
         {
-            Rss articles = new();
-            XmlSerializer serializer = new XmlSerializer(typeof(Rss));
-            using (StringReader reader = new StringReader("https://www.dr.dk/nyheder/service/feeds/senestenyt"))
+            Rss20FeedFormatter rssFormatter;
+            using (var xmlReader = XmlReader.Create
+                ("https://www.dr.dk/nyheder/service/feeds/senestenyt"))
             {
-                articles = (Rss)serializer.Deserialize(reader);
+                rssFormatter = new Rss20FeedFormatter();
+                rssFormatter.ReadFrom(xmlReader);
+
             }
 
-            return articles;
+            var title = rssFormatter.Feed.Title.Text;
+
+            foreach (var syndicationItem in rssFormatter.Feed.Items)
+            {
+                Debug.WriteLine("Article: {0}",
+                   syndicationItem.Title.Text);
+                Debug.WriteLine("URL: {0}",
+                   syndicationItem.Links[0].Uri);
+            }
         }
     }
 }
