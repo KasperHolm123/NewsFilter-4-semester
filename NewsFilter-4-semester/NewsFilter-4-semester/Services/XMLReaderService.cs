@@ -15,8 +15,6 @@ namespace NewsFilter_4_semester.Services
 {
     public static class XMLReaderService
     {
-
-
         public static List<Article> Trending()
         {
             Rss20FeedFormatter rssFormatter;
@@ -27,15 +25,11 @@ namespace NewsFilter_4_semester.Services
                 rssFormatter.ReadFrom(xmlReader);
 
             }
+ 
             List<Article> articles = new();
             foreach (var syndicationItem in rssFormatter.Feed.Items)
             {
-                Debug.WriteLine("Article: {0}",
-                   syndicationItem.Title.Text);
-                Debug.WriteLine("URL: {0}",
-                   syndicationItem.Links[0].Uri);
-
-
+ 
                 articles.Add(new Article
                 {
                     Title = syndicationItem.Title.Text,
