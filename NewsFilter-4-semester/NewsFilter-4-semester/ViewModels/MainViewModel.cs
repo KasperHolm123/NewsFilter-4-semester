@@ -18,11 +18,11 @@ namespace NewsFilter_4_semester.ViewModels
     public partial class MainViewModel
     {
         //public ObservableCollection<Article.Channel> Articles { get; set; }
-        public Article.Rss Articles { get; set; }
+        public List<Article> Articles { get; set; }
 
         public MainViewModel()
         {
-            //Articles = XMLReaderService.Trending();
+            Articles = XMLReaderService.Trending();
         }
 
         
