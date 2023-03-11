@@ -1,4 +1,6 @@
-﻿namespace NewsFilter_4_semester;
+﻿using NewsFilter_4_semester.Pages;
+
+namespace NewsFilter_4_semester;
 
 public partial class MainPage : ContentPage
 {
@@ -6,5 +8,10 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void SettingsBtn_Click(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new SettingsPage());
+    }
 }
 

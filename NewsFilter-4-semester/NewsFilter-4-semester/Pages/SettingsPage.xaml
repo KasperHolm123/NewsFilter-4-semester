@@ -4,10 +4,10 @@
              x:Class="NewsFilter_4_semester.Pages.SettingsPage"
              Title="SettingsPage">
     <ScrollView>
-        <StackLayout>
-            <Label FontSize="Large">Settings</Label>
-            <Label>Dark/Light mode</Label>
-            <Switch x:Name="ThemeSwitch" Toggled="OnToggled" OnColor="Orange" ThumbColor="DeepPink"></Switch>
+        <StackLayout x:Name="MainStackLayout">
+            <Label x:Name="MainLabel" FontSize="Large">Settings</Label>
+            <Label x:Name="MainLabel">Dark/Light mode</Label>
+            <Switch x:Name="ThemeSwitch" Toggled="ThemeSwitch_Toggled" OnColor="Orange" ThumbColor="Black"></Switch>
             
         </StackLayout>
     </ScrollView>

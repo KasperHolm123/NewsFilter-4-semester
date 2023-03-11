@@ -19,7 +19,8 @@
             <Button Text="Settings"
                     BackgroundColor="Gray"
                     HeightRequest="50"
-                    HorizontalOptions="End">
+                    HorizontalOptions="End"
+                    Clicked="SettingsBtn_Click">
             </Button>
             <AbsoluteLayout HeightRequest="100"
                             VerticalOptions="Start"

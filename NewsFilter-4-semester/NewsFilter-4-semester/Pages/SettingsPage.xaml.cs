@@ -1,4 +1,7 @@
 using NewsFilter_4_semester.Resources.Themes;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.ApplicationModel;
 
 namespace NewsFilter_4_semester.Pages;
 
@@ -7,38 +10,81 @@ public partial class SettingsPage : ContentPage
     public SettingsPage()
     {
         InitializeComponent();
+    }
 
-        void ThemeSwitch_Toggled(object sender, EventArgs e)
+    private void ThemeSwitch_Toggled(object sender, ToggledEventArgs e)
+    {
+
+        //Switch themeSwitch = (Switch)sender;
+        //if (themeSwitch.IsToggled)
+        //{
+        //    Application.Current.Resources = new ResourceDictionaryDark();
+        //}
+        //else
+        //{
+        //    Application.Current.Resources = new ResourceDictionaryLight();
+        //}
+
+        if (e.Value)
         {
-            Switch themeSwitch = (Switch)sender;
-            if (themeSwitch.IsToggled)
-            {
-                Application.Current.Resources = new ResourceDictionaryDark();
-            }
-            else
-            {
-                Application.Current.Resources = new ResourceDictionaryLight();
-            }
+            App.Current.UserAppTheme = AppTheme.Dark;
         }
+        else
+        {
+            App.Current.UserAppTheme = AppTheme.Light;
+        }
+
+        UpdateTheme();
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        App.Current.RequestedThemeChanged += OnAppThemeChanged;
+        UpdateTheme();
+    }
 
-        // Set the switch's initial value based on the current application theme
-        if (Application.Current.Resources is ResourceDictionaryDark)
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        App.Current.RequestedThemeChanged -= OnAppThemeChanged;
+        UpdateTheme();
+    }
+
+    //private void OnAppThemeChanged(object sender, AppThemeChangedEventArgs e)
+    //{
+    //    if (e.RequestedTheme == AppTheme.Dark)
+    //    {
+    //        App.Current.UserAppTheme = AppTheme.Dark;
+    //    }
+    //    else
+    //    {
+    //        App.Current.UserAppTheme = AppTheme.Light;
+    //    }
+    //}
+
+    private void OnAppThemeChanged(object sender, AppThemeChangedEventArgs e)
+    {
+        UpdateTheme();
+    }
+
+    private void UpdateTheme()
+    {
+        var theme = App.Current.RequestedTheme;
+
+        if (theme == AppTheme.Dark)
         {
-            ThemeSwitch.IsToggled = true;
+            // Apply dark theme
+            MainStackLayout.BackgroundColor = Color.FromHex("#1C1C1E");
+            MainLabel.TextColor = Color.FromHex("#FFFFFF");
+            //Application.Current.Resources = new ResourceDictionaryDark();
         }
         else
         {
-            ThemeSwitch.IsToggled = false;
+            // Apply light theme
+            MainStackLayout.BackgroundColor = Color.FromHex("#FFFFFF");
+            MainLabel.TextColor = Color.FromHex("#000000");
+            //Application.Current.Resources = new ResourceDictionaryLight();
         }
-    }
-
-    private void OnToggled(object sender, ToggledEventArgs e)
-    {
-        throw new NotImplementedException();
     }
 }
