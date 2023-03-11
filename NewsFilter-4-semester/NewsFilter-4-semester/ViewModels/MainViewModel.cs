@@ -11,31 +11,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NewsFilter_4_semester.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.ViewModels
 {
     
-    public partial class MainViewModel
+    public partial class MainViewModel : INotifyPropertyChanged
     {
-        //public ObservableCollection<Article.Channel> Articles { get; set; }
-        public List<Article> Articles { get; set; }
+        #region Interface implementation
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        #region Fields
+        private List<Article> _articles;
+        public List<Article> Articles
+        {
+            get => _articles;
+            set
+            {
+                _articles = value;
+                NotifyPropertyChanged();
+            }
+        }
+        #endregion
 
         public MainViewModel()
         {
-            Articles = XMLReaderService.Trending();
         }
 
-        
         [RelayCommand]
-        public async Task ChangeShownArticles(string type)
+        public void ChangeShownArticles(string type)
         {
             switch (type)
             {
                 case "Trending":
-                    //Articles = XMLReaderService.Trending();
+                    Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt");
                     break;
                 case "World":
-                    //Articles = XMLReader.World();
+                    Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland");
                     break;
                 case "Technology":
                     //Articles = XMLReader.Technology();
@@ -49,6 +68,12 @@ namespace NewsFilter_4_semester.ViewModels
         public async Task ChangePage(string uri)
         {
             await Shell.Current.GoToAsync(uri);
+        }
+
+        [RelayCommand]
+        public async Task ReadMore(string url)
+        {
+            await Browser.Default.OpenAsync(url);
         }
     }
 }
