@@ -46,15 +46,16 @@ namespace NewsFilter_4_semester.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeShownArticles(string type)
+        public async Task ChangeShownArticles(string type)
         {
             switch (type)
             {
                 case "Trending":
-                    Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt");
+                    var task = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt"));
+                    Articles = await task;
                     break;
                 case "World":
-                    Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland");
+                    //Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland");
                     break;
                 case "Technology":
                     //Articles = XMLReader.Technology();

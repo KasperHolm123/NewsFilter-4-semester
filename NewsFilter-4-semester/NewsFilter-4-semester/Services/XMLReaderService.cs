@@ -6,11 +6,10 @@ namespace NewsFilter_4_semester.Services
 {
     public static class XMLReaderService
     {
-        public static List<Article> GetArticles(string url)
+        public static Task<List<Article>> GetArticles(string url)
         {
             Rss20FeedFormatter rssFormatter;
-            using (var xmlReader = XmlReader.Create
-                (url))
+            using (var xmlReader = XmlReader.Create(url))
             {
                 rssFormatter = new Rss20FeedFormatter();
                 rssFormatter.ReadFrom(xmlReader);
@@ -28,7 +27,7 @@ namespace NewsFilter_4_semester.Services
                     PubDate = syndicationItem.PublishDate.Date.ToString()
                 });
             }
-            return articles;
+            return Task.FromResult(articles);
         }
     }
 }
