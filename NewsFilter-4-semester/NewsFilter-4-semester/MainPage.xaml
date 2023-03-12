@@ -10,7 +10,7 @@
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:MainViewModel"
              x:Class="NewsFilter_4_semester.MainPage">
-
+    
     <Grid ColumnDefinitions="*, *"
           RowDefinitions="100, *"
           VerticalOptions="Start">
@@ -18,16 +18,15 @@
               BackgroundColor="Gray"
               Grid.ColumnSpan="2">
             <Grid Grid.Row="0">
-                <Image Source="dotnet_bot.svg"
-                       HorizontalOptions="Start">
-                </Image>
+                <Image Source="newspaper.png" 
+                       HorizontalOptions="Start"
+                       Margin="5,5,0,0"/>
                 <Button Text="Settings"
                         BackgroundColor="Gray"
                         HeightRequest="50"
                         HorizontalOptions="End"
                         Command="{Binding ChangePageCommand}"
-                        CommandParameter="SettingsPage">
-                </Button>
+                        CommandParameter="SettingsPage" />
             </Grid>
             <AbsoluteLayout VerticalOptions="Start"
                             BackgroundColor="Gray"
@@ -39,9 +38,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Trending">
-
-                </Button>
+                        CommandParameter="Trending" />
                 <Button Text="World"
                         WidthRequest="75"
                         FontSize="11"
@@ -49,9 +46,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="World">
-
-                </Button>
+                        CommandParameter="World" />
                 <Button Text="Technology"
                         WidthRequest="100"
                         FontSize="11"
@@ -59,9 +54,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Technology">
-
-                </Button>
+                        CommandParameter="Technology" />
             </AbsoluteLayout>
         </Grid>
         <ScrollView Grid.Row="1"
@@ -74,21 +67,35 @@
                          BackgroundColor="#383838">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="model:Article">
-                        <Frame BackgroundColor="#7a7a7a" CornerRadius="10" Margin="10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Frame CornerRadius="10" Grid.Column="0" Padding="0" Margin="0" WidthRequest="100" HeightRequest="100">
-                                    <Image Source="https://cdn.mos.cms.futurecdn.net/YDDJGnLfoCvjEPU9PLCkj9-970-80.jpg.webp" Aspect="AspectFill" />
+                        <Frame BackgroundColor="#7a7a7a"
+                               CornerRadius="10"
+                               Margin="10">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Frame CornerRadius="10"
+                                       Grid.Column="0"
+                                       Padding="0"
+                                       Margin="0"
+                                       WidthRequest="100"
+                                       HeightRequest="100">
+                                    <Image Source="dr_logo.png"
+                                           Aspect="AspectFill" />
                                 </Frame>
-
-                                <StackLayout Grid.Column="1" Margin="10, 0, 0, 0" Spacing="5">
-                                    <Label TextColor="#fff" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold"/>
-                                    <Label TextColor="#fff" Text="{Binding Link}" FontSize="Small" MaxLines="5"/>
-                                    <Button Text="Read More" BackgroundColor="#383838" TextColor="#fff" CornerRadius="5" Margin="0, 10, 0, 0"
+                                <StackLayout Grid.Column="1"
+                                             Margin="10, 0, 0, 0"
+                                             Spacing="5">
+                                    <Label TextColor="#fff"
+                                           Text="{Binding Title}"
+                                           FontSize="Medium"
+                                           FontAttributes="Bold"/>
+                                    <Label TextColor="#fff"
+                                           Text="{Binding Link}"
+                                           FontSize="Small"
+                                           MaxLines="5"/>
+                                    <Button Text="Read More"
+                                            BackgroundColor="#383838"
+                                            TextColor="#fff"
+                                            CornerRadius="5"
+                                            Margin="0, 10, 0, 0"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}},
                                                         Path=ReadMoreCommand}"
                                             CommandParameter="{Binding Link}"/>
