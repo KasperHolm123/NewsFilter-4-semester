@@ -31,14 +31,14 @@
             <AbsoluteLayout VerticalOptions="Start"
                             BackgroundColor="Gray"
                             Grid.Row="1">
-                <Button Text="Trending"
+                <Button Text="Latest"
                         WidthRequest="75"
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Trending" />
+                        CommandParameter="Latest" />
                 <Button Text="World"
                         WidthRequest="75"
                         FontSize="11"
@@ -47,14 +47,14 @@
                         AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
                         CommandParameter="World" />
-                <Button Text="Technology"
+                <Button Text="Sport"
                         WidthRequest="100"
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Technology" />
+                        CommandParameter="Sport" />
             </AbsoluteLayout>
         </Grid>
         <ScrollView Grid.Row="1"

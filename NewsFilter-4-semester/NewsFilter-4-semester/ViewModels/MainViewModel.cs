@@ -50,15 +50,17 @@ namespace NewsFilter_4_semester.ViewModels
         {
             switch (type)
             {
-                case "Trending":
-                    var task = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt"));
-                    Articles = await task;
+                case "Latest":
+                    var latest = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt"));
+                    Articles = await latest;
                     break;
                 case "World":
-                    //Articles = XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland");
+                    var world = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland"));
+                    Articles = await world;
                     break;
-                case "Technology":
-                    //Articles = XMLReader.Technology();
+                case "Sport":
+                    var sport = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/sporten"));
+                    Articles = await sport;
                     break;
                 default:
                     break;
