@@ -37,7 +37,15 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Filter">
                         <ViewCell>
-                            <Label Text="{Binding Keyword}" />
+                            <Grid ColumnDefinitions="*, *">
+                                <Label Grid.Column="0"
+                                       Text="{Binding Keyword}" />
+                                <Button Grid.Column="1"
+                                        Text="X"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SettingsPageViewModel}},
+                                                    Path=RemoveFilterCommand}"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

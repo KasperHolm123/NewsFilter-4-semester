@@ -37,5 +37,11 @@ namespace NewsFilter_4_semester.ViewModels
         {
             FilterService.Filters.Add(new Filter { Keyword = FilterWord });
         }
+
+        [RelayCommand]
+        public void RemoveFilter(Filter filter)
+        {
+            FilterService.Filters.Remove(filter);
+        }
     }
 }
