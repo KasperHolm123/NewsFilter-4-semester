@@ -75,15 +75,21 @@ public partial class SettingsPage : ContentPage
         if (theme == AppTheme.Dark)
         {
             // Apply dark theme
-            MainStackLayout.BackgroundColor = Color.FromHex("#1C1C1E");
-            MainLabel.TextColor = Color.FromHex("#FFFFFF");
+            MainStackLayout.BackgroundColor = Color.FromArgb("#1C1C1E");
+            foreach (Label label in MainStackLayout.Children)
+            {
+                label.TextColor = Color.FromArgb("#FFFFFF");
+            }
             //Application.Current.Resources = new ResourceDictionaryDark();
         }
         else
         {
             // Apply light theme
-            MainStackLayout.BackgroundColor = Color.FromHex("#FFFFFF");
-            MainLabel.TextColor = Color.FromHex("#000000");
+            MainStackLayout.BackgroundColor = Color.FromArgb("#FFFFFF");
+            foreach (Label label in MainStackLayout.Children)
+            {
+                label.TextColor = Color.FromArgb("#000000");
+            }
             //Application.Current.Resources = new ResourceDictionaryLight();
         }
     }

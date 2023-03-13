@@ -6,8 +6,11 @@
     <ScrollView>
         <StackLayout x:Name="MainStackLayout">
             <Label x:Name="MainLabel" FontSize="Large">Settings</Label>
-            <Label x:Name="MainLabel">Dark/Light mode</Label>
-            <Switch x:Name="ThemeSwitch" Toggled="ThemeSwitch_Toggled" OnColor="Orange" ThumbColor="Black"></Switch>
+            <Label>Dark/Light mode</Label>
+            <Switch x:Name="ThemeSwitch" Toggled="ThemeSwitch_Toggled" OnColor="Orange" ThumbColor="Navy"></Switch>
+            <Label>Test1</Label>
+            <Label>Test2</Label>
+            <Label>Test3</Label>
             
         </StackLayout>
     </ScrollView>

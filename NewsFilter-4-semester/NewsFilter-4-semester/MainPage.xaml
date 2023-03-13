@@ -52,7 +52,8 @@
                 </Button>
             </AbsoluteLayout>
         </Grid>
-        <StackLayout BackgroundColor="#383838"
+        <StackLayout x:Name="MainStackLayout"
+                     BackgroundColor="#383838"
                      Margin="0,0,0,20"
                      Grid.Row="2"
                      Grid.ColumnSpan="2"
