@@ -41,7 +41,7 @@ namespace NewsFilter_4_semester.ViewModels
         [RelayCommand]
         public void RemoveFilter(Filter filter)
         {
-            FilterService.Filters.Remove(filter);
+            FilterService.Filters.RemoveAll(x => x.Keyword == filter.Keyword);
         }
     }
 }
