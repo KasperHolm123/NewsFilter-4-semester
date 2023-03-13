@@ -91,6 +91,11 @@
                                            Text="{Binding Link}"
                                            FontSize="Small"
                                            MaxLines="5"/>
+                                    <Label TextColor="#fff"
+                                           Text="{Binding PubDate}"
+                                           FontSize="Small"
+                                           MaxLines="5"/>
+
                                     <Button Text="Read More"
                                             BackgroundColor="#383838"
                                             TextColor="#fff"

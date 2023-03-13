@@ -1,4 +1,5 @@
 ﻿using NewsFilter_4_semester.Models;
+using System.Diagnostics;
 using System.ServiceModel.Syndication;
 using System.Xml;
 
@@ -24,9 +25,11 @@ namespace NewsFilter_4_semester.Services
                 {
                     Title = syndicationItem.Title.Text,
                     Link = syndicationItem.Links[0].Uri.ToString(),
-                    PubDate = syndicationItem.PublishDate.Date.ToString()
+                    PubDate = syndicationItem.PublishDate.DateTime
                 });
+                Debug.WriteLine(syndicationItem.PublishDate.DateTime);
             }
+            articles.Sort((x, y) => DateTime.Compare(y.PubDate, x.PubDate));
             return Task.FromResult(articles);
         }
     }
