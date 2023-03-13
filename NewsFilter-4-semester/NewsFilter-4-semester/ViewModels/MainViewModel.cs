@@ -17,53 +17,25 @@ using System.Runtime.CompilerServices;
 namespace NewsFilter_4_semester.ViewModels
 {
     
-    public partial class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Fields
-        private List<Article> _articles;
-        public List<Article> Articles
-        {
-            get => _articles;
-            set
-            {
-                _articles = value;
-                NotifyPropertyChanged();
-            }
-        }
+        public FilterService FilterService { get; set; }
         #endregion
 
-        public MainViewModel()
+        public MainViewModel(FilterService filterService)
         {
+            FilterService = filterService;
         }
 
         [RelayCommand]
-        public async Task ChangeShownArticles(string type)
+        public async Task ChangeShownArticles(string url)
         {
-            switch (type)
+            var task = Task.Run(() => XMLReaderService.GetArticles(url));
+            FilterService.Articles = await task;
+            if (FilterService.IsFilterOn)
             {
-                case "Latest":
-                    var latest = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt"));
-                    Articles = await latest;
-                    break;
-                case "World":
-                    var world = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/udland"));
-                    Articles = await world;
-                    break;
-                case "Sport":
-                    var sport = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/sporten"));
-                    Articles = await sport;
-                    break;
-                default:
-                    break;
+                FilterService.FilterList();
             }
         }
 

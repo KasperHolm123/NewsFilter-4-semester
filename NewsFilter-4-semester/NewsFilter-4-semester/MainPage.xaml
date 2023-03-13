@@ -38,7 +38,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Latest" />
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/senestenyt" />
                 <Button Text="World"
                         WidthRequest="75"
                         FontSize="11"
@@ -46,7 +46,7 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="World" />
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/udland" />
                 <Button Text="Sport"
                         WidthRequest="100"
                         FontSize="11"
@@ -54,13 +54,13 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional"
                         AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
                         Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="Sport" />
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/sporten" />
             </AbsoluteLayout>
         </Grid>
         <ScrollView Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2">
-            <StackLayout BindableLayout.ItemsSource="{Binding Articles}"
+            <StackLayout BindableLayout.ItemsSource="{Binding FilterService.Articles}"
                          Grid.Row="2"
                          Grid.Column="0"
                          Grid.ColumnSpan="2"
