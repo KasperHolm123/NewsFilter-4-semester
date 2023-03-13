@@ -13,7 +13,6 @@ namespace NewsFilter_4_semester.ViewModels
     {
         #region Fields
         public FilterService FilterService { get; set; }
-        public bool IsFilterOn { get; set; } = false;
         #endregion
 
 
@@ -25,7 +24,6 @@ namespace NewsFilter_4_semester.ViewModels
         [RelayCommand]
         public void AddFilter()
         {
-            FilterService.IsFilterOn = true;
             FilterService.Filters.Add(new Filter 
             {
                 Keywords = new List<string>

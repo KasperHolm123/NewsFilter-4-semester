@@ -23,7 +23,7 @@
             <Switch x:Name="FilterSwitch"
                  OnColor="Orange"
                     ThumbColor="DeepPink"
-                    IsToggled="{Binding IsFilterOn}" />
+                    IsToggled="{Binding FilterService.IsFilterOn}" />
             <Label Text="Filtered keywords:" />
             <Entry x:Name="KeywordEntry"
                 Placeholder="Enter keyword to filter" />
@@ -31,13 +31,13 @@
                     Command="{Binding AddFilterCommand}" />
 
             <ListView x:Name="FilteredKeywordsList"
-                      ItemsSource="{Binding FilteredKeywords}"
+                      ItemsSource="{Binding FilterService.Filters}"
                     SelectionMode="None"
                     HasUnevenRows="True">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:Filter">
                         <ViewCell>
-                            <Label Text="{Binding}" />
+                            <Label Text="{Binding Keywords}" />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
