@@ -1,13 +1,14 @@
 using NewsFilter_4_semester.Resources.Themes;
+using NewsFilter_4_semester.ViewModels;
 
 namespace NewsFilter_4_semester.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    public SettingsPage()
+    public SettingsPage(SettingsPageViewModel model)
     {
         InitializeComponent();
-
+        BindingContext = model;
         void ThemeSwitch_Toggled(object sender, EventArgs e)
         {
             Switch themeSwitch = (Switch)sender;
