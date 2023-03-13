@@ -37,15 +37,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Filter">
                         <ViewCell>
-                            <Grid ColumnDefinitions="*, *">
+                            <StackLayout Orientation="Horizontal">
                                 <Label Grid.Column="0"
-                                       Text="{Binding Keyword}" />
+                                    Text="{Binding Keyword}"
+                                    VerticalOptions="Center"/>
                                 <Button Grid.Column="1"
-                                        Text="X"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SettingsPageViewModel}},
-                                                    Path=RemoveFilterCommand}"
-                                        CommandParameter="{Binding .}"/>
-                            </Grid>
+                                    Text="X"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SettingsPageViewModel}},
+                                              Path=RemoveFilterCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </StackLayout>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
