@@ -2,13 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsFilter_4_semester.Pages.SettingsPage"
-             Title="SettingsPage">
+             Title="SettingsPage"
+             xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
+             xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
+             x:DataType="viewmodels:SettingsPageViewModel">
+    
     <ScrollView>
         <StackLayout>
             <Label FontSize="Large">Settings</Label>
             <Label>Dark/Light mode</Label>
-            <Switch x:Name="ThemeSwitch" Toggled="OnToggled" OnColor="Orange" ThumbColor="DeepPink"></Switch>
-            
+            <Switch x:Name="ThemeSwitch"
+                    Toggled="OnToggled"
+                    OnColor="Orange"
+                    ThumbColor="DeepPink" />
+            <Button Text="Add Filter" 
+                    Command="{Binding AddFilterCommand}" />
+
         </StackLayout>
     </ScrollView>
     

@@ -39,10 +39,7 @@ namespace NewsFilter_4_semester.Services
 
         public FilterService()
         {
-            Filters = new()
-            {
-                new Filter { Keywords = new List<string> { "Pernille" }}
-            };
+            Filters = new();
         }
 
         public List<Article> FilterList()
