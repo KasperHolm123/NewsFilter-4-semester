@@ -35,13 +35,16 @@ namespace NewsFilter_4_semester.ViewModels
         [RelayCommand]
         public void AddFilter()
         {
-            FilterService.Filters.Add(new Filter { Keyword = FilterWord });
+            if (FilterWord != null && FilterWord != string.Empty && FilterWord != "")
+            {
+                FilterService.Filters.Add(new Filter { Keyword = FilterWord.ToUpper() });
+            }
         }
 
         [RelayCommand]
         public void RemoveFilter(Filter filter)
         {
-            FilterService.Filters.RemoveAll(x => x.Keyword == filter.Keyword);
+            FilterService.Filters.RemoveAll(x => x.Keyword.ToUpper() == filter.Keyword.ToUpper());
         }
     }
 }
