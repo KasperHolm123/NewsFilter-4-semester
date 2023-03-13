@@ -6,7 +6,7 @@
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:SettingsPageViewModel">
-    
+
     <ScrollView>
         <StackLayout>
             <Label FontSize="Large">Settings</Label>
@@ -15,10 +15,34 @@
                     Toggled="OnToggled"
                     OnColor="Orange"
                     ThumbColor="DeepPink" />
+
+
+            <!--Add filter-->
+            <Label FontSize="Large" Text="Filter by keyword:" />
+            <Label Text="Turn on/off filter:" />
+            <Switch x:Name="FilterSwitch"
+                 OnColor="Orange"
+                    ThumbColor="DeepPink"
+                    IsToggled="{Binding IsFilterOn}" />
+            <Label Text="Filtered keywords:" />
+            <Entry x:Name="KeywordEntry"
+                Placeholder="Enter keyword to filter" />
             <Button Text="Add Filter" 
                     Command="{Binding AddFilterCommand}" />
 
+            <ListView x:Name="FilteredKeywordsList"
+                      ItemsSource="{Binding FilteredKeywords}"
+                    SelectionMode="None"
+                    HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ScrollView>
-    
+
 </ContentPage>
