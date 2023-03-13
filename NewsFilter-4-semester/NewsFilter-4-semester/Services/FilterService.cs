@@ -22,7 +22,18 @@ namespace NewsFilter_4_semester.Services
         #endregion
 
         #region Fields
-        public static List<Filter> Filters { get; set; }
+        private static List<Filter> _filters;
+        public List<Filter> Filters
+        {
+            get => _filters;
+            set
+            {
+                _filters = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private static List<Article> _articles;
         public List<Article> Articles
         {
@@ -47,11 +58,8 @@ namespace NewsFilter_4_semester.Services
             List<Article> list = new List<Article>(Articles);
             foreach (var filter in Filters)
             {
-                foreach (var keyword in filter.Keywords)
-                {
-                    // ToUpper() to normalize the title/keyword.
-                    list.RemoveAll(x => x.Title.ToUpper().Contains(keyword.ToUpper()));
-                }
+                // ToUpper() to normalize the title/keyword.
+                list.RemoveAll(x => x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
             }
             Articles = list;
             return Articles;

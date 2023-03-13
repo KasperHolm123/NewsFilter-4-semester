@@ -26,7 +26,7 @@
                     IsToggled="{Binding FilterService.IsFilterOn}" />
             <Label Text="Filtered keywords:" />
             <Entry x:Name="KeywordEntry"
-                Placeholder="Enter keyword to filter" />
+                Placeholder="Enter keyword to filter" Text="{Binding FilterWord}" />
             <Button Text="Add Filter" 
                     Command="{Binding AddFilterCommand}" />
 
@@ -37,7 +37,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Filter">
                         <ViewCell>
-                            <Label Text="{Binding Keywords}" />
+                            <Label Text="{Binding Keyword}" />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

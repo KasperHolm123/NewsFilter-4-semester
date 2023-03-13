@@ -8,6 +8,6 @@ namespace NewsFilter_4_semester.Models
 {
     public class Filter
     {
-        public List<string> Keywords { get; set; }
+        public string Keyword { get; set; }
     }
 }
