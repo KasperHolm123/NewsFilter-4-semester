@@ -26,6 +26,7 @@ namespace NewsFilter_4_semester.ViewModels
         public MainViewModel(FilterService filterService)
         {
             FilterService = filterService;
+            FilterService.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
         }
 
         [RelayCommand]
@@ -35,7 +36,7 @@ namespace NewsFilter_4_semester.ViewModels
             FilterService.Articles = await task;
             if (FilterService.IsFilterOn)
             {
-                FilterService.FilterList();
+                FilterService.FilterArticles();
             }
         }
 

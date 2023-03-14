@@ -1,5 +1,4 @@
-﻿using Java.Nio.Channels;
-using NewsFilter_4_semester.Models;
+﻿using NewsFilter_4_semester.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +32,6 @@ namespace NewsFilter_4_semester.Services
             }
         }
 
-
         private static List<Article> _articles;
         public List<Article> Articles
         {
@@ -53,7 +51,7 @@ namespace NewsFilter_4_semester.Services
             Filters = new();
         }
 
-        public List<Article> FilterList()
+        public List<Article> FilterArticles()
         {
             List<Article> list = new List<Article>(Articles);
             foreach (var filter in Filters)

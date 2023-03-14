@@ -47,6 +47,7 @@ namespace NewsFilter_4_semester.ViewModels
         {
             if (FilterWord != null && FilterWord != string.Empty && FilterWord != "")
             {
+                // ToUpper() to normalize values
                 FilterService.Filters.Add(new Filter { Keyword = FilterWord.ToUpper() });
             }
             // clear input field
@@ -56,6 +57,7 @@ namespace NewsFilter_4_semester.ViewModels
         [RelayCommand]
         public void RemoveFilter(Filter filter)
         {
+            // ToUpper() to normalize values
             FilterService.Filters.RemoveAll(x => x.Keyword.ToUpper() == filter.Keyword.ToUpper());
         }
     }
