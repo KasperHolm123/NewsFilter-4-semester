@@ -14,17 +14,6 @@ public partial class SettingsPage : ContentPage
 
     private void ThemeSwitch_Toggled(object sender, ToggledEventArgs e)
     {
-
-        //Switch themeSwitch = (Switch)sender;
-        //if (themeSwitch.IsToggled)
-        //{
-        //    Application.Current.Resources = new ResourceDictionaryDark();
-        //}
-        //else
-        //{
-        //    Application.Current.Resources = new ResourceDictionaryLight();
-        //}
-
         if (e.Value)
         {
             App.Current.UserAppTheme = AppTheme.Dark;
@@ -51,18 +40,6 @@ public partial class SettingsPage : ContentPage
         UpdateTheme();
     }
 
-    //private void OnAppThemeChanged(object sender, AppThemeChangedEventArgs e)
-    //{
-    //    if (e.RequestedTheme == AppTheme.Dark)
-    //    {
-    //        App.Current.UserAppTheme = AppTheme.Dark;
-    //    }
-    //    else
-    //    {
-    //        App.Current.UserAppTheme = AppTheme.Light;
-    //    }
-    //}
-
     private void OnAppThemeChanged(object sender, AppThemeChangedEventArgs e)
     {
         UpdateTheme();
@@ -83,6 +60,8 @@ public partial class SettingsPage : ContentPage
                     label.TextColor = Color.FromHex("#FFFFFF");
                 }
             }
+
+            
         }
         else
         {
@@ -99,3 +78,34 @@ public partial class SettingsPage : ContentPage
     }
 
 }
+
+//Forsøg på at binde det til ContentPage
+//public static class ThemeHelper
+//{
+//    public static void ApplyTheme(Page page)
+//    {
+//        var theme = App.Current.RequestedTheme;
+
+//        if (theme == AppTheme.Dark)
+//        {
+//            // Apply dark theme
+//            page.BackgroundColor = Color.FromHex("#1C1C1E");
+
+//            label.TextColor = Color.FromHex("#FFFFFF");
+
+
+//        }
+//        else
+//        {
+//            // Apply light theme
+//            MainStackLayout.BackgroundColor = Color.FromHex("#FFFFFF");
+//            foreach (var child in MainStackLayout.Children)
+//            {
+//                if (child is Label label)
+//                {
+//                    label.TextColor = Color.FromHex("#000000");
+//                }
+//            }
+//        }
+//    }
+//}
