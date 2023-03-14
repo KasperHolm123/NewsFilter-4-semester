@@ -8,8 +8,8 @@
              x:DataType="viewmodels:SettingsPageViewModel">
 
     <ScrollView>
-        <StackLayout>
-            <Label FontSize="Large">Settings</Label>
+        <StackLayout x:Name="MainStackLayout">
+            <Label x:Name="MainLabel" FontSize="Large">Settings</Label>
             <Label>Dark/Light mode</Label>
             <Switch x:Name="ThemeSwitch"
                     Toggled="OnToggled"

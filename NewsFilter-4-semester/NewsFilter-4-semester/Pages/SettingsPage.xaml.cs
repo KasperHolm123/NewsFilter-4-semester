@@ -9,37 +9,103 @@ public partial class SettingsPage : ContentPage
     {
         InitializeComponent();
         BindingContext = model;
+    }
+
+    private void ThemeSwitch_Toggled(object sender, ToggledEventArgs e)
+    {
+        if (e.Value)
         void ThemeSwitch_Toggled(object sender, EventArgs e)
         {
-            Switch themeSwitch = (Switch)sender;
-            if (themeSwitch.IsToggled)
-            {
-                Application.Current.Resources = new ResourceDictionaryDark();
-            }
-            else
-            {
-                Application.Current.Resources = new ResourceDictionaryLight();
-            }
+            App.Current.UserAppTheme = AppTheme.Dark;
         }
+        else
+        {
+            App.Current.UserAppTheme = AppTheme.Light;
+        }
+
+        UpdateTheme();
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        App.Current.RequestedThemeChanged += OnAppThemeChanged;
+        UpdateTheme();
+    }
 
-        // Set the switch's initial value based on the current application theme
-        if (Application.Current.Resources is ResourceDictionaryDark)
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        App.Current.RequestedThemeChanged -= OnAppThemeChanged;
+        UpdateTheme();
+    }
+
+    private void OnAppThemeChanged(object sender, AppThemeChangedEventArgs e)
+    {
+        UpdateTheme();
+    }
+
+    private void UpdateTheme()
+    {
+        var theme = App.Current.RequestedTheme;
+
+        if (theme == AppTheme.Dark)
         {
-            ThemeSwitch.IsToggled = true;
+            // Apply dark theme
+            MainStackLayout.BackgroundColor = Color.FromHex("#1C1C1E");
+            foreach (var child in MainStackLayout.Children)
+            {
+                if (child is Label label)
+                {
+                    label.TextColor = Color.FromHex("#FFFFFF");
+                }
+            }
+
+            
         }
         else
         {
-            ThemeSwitch.IsToggled = false;
+            // Apply light theme
+            MainStackLayout.BackgroundColor = Color.FromHex("#FFFFFF");
+            foreach (var child in MainStackLayout.Children)
+            {
+                if (child is Label label)
+                {
+                    label.TextColor = Color.FromHex("#000000");
+                }
+            }
         }
     }
 
-    private void OnToggled(object sender, ToggledEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
 }
+
+//Fors�g p� at binde det til ContentPage
+//public static class ThemeHelper
+//{
+//    public static void ApplyTheme(Page page)
+//    {
+//        var theme = App.Current.RequestedTheme;
+
+//        if (theme == AppTheme.Dark)
+//        {
+//            // Apply dark theme
+//            page.BackgroundColor = Color.FromHex("#1C1C1E");
+
+//            label.TextColor = Color.FromHex("#FFFFFF");
+
+
+//        }
+//        else
+//        {
+//            // Apply light theme
+//            MainStackLayout.BackgroundColor = Color.FromHex("#FFFFFF");
+//            foreach (var child in MainStackLayout.Children)
+//            {
+//                if (child is Label label)
+//                {
+//                    label.TextColor = Color.FromHex("#000000");
+//                }
+//            }
+//        }
+//    }
+//}
