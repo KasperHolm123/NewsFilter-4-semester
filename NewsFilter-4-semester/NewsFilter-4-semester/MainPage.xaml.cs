@@ -9,7 +9,6 @@ namespace NewsFilter_4_semester
         public MainPage(MainViewModel model)
         {
             InitializeComponent();
-
             BindingContext = model;
         }
     }
