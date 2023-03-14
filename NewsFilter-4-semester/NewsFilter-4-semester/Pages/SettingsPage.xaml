@@ -12,7 +12,7 @@
             <Label x:Name="MainLabel" FontSize="Large">Settings</Label>
             <Label>Dark/Light mode</Label>
             <Switch x:Name="ThemeSwitch"
-                    Toggled="OnToggled"
+                    Toggled="ThemeSwitch_Toggled"
                     OnColor="Orange"
                     ThumbColor="DeepPink" />
             <Label FontSize="Large"
