@@ -1,77 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsFilter_4_semester.MainPage"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:NewsFilter_4_semester"
              Shell.NavBarIsVisible="False"
+             mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
-             x:DataType="viewmodels:MainViewModel">
-
+             x:DataType="viewmodels:MainViewModel"
+             x:Class="NewsFilter_4_semester.MainPage">
+    
     <Grid ColumnDefinitions="*, *"
-          RowDefinitions="50, 50, *"
+          RowDefinitions="100, *"
           VerticalOptions="Start">
-        <Grid BackgroundColor="Gray"
-              Grid.ColumnSpan="2"
-              Grid.Row="0">
-            <Image Source="dotnet_bot.svg"
-                   HorizontalOptions="Start">
-            </Image>
-            <Button Text="Settings"
-                    BackgroundColor="Gray"
-                    HeightRequest="50"
-                    HorizontalOptions="End"
-                    Clicked="SettingsBtn_Click">
-            </Button>
-            <AbsoluteLayout HeightRequest="100"
-                            VerticalOptions="Start"
+        <Grid RowDefinitions="50, *"
+              BackgroundColor="Gray"
+              Grid.ColumnSpan="2">
+            <Grid Grid.Row="0">
+                <Image Source="newspaper.png" 
+                       HorizontalOptions="Start"
+                       Margin="5,5,0,0"/>
+                <Button Text="Settings"
+                        BackgroundColor="Gray"
+                        HeightRequest="50"
+                        HorizontalOptions="End"
+                        Command="{Binding ChangePageCommand}"
+                        CommandParameter="SettingsPage" />
+            </Grid>
+            <AbsoluteLayout VerticalOptions="Start"
                             BackgroundColor="Gray"
-                            ZIndex="-1">
-                <Button Text="Trending"
+                            Grid.Row="1">
+                <Button Text="Latest"
                         WidthRequest="75"
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50">
-
-                </Button>
+                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/senestenyt" />
                 <Button Text="World"
                         WidthRequest="75"
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50">
-
-                </Button>
-                <Button Text="Technology"
+                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/udland" />
+                <Button Text="Sport"
                         WidthRequest="100"
                         FontSize="11"
                         BackgroundColor="Gray"
                         AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50">
-
-                </Button>
+                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
+                        Command="{Binding Path=ChangeShownArticlesCommand}"
+                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/sporten" />
             </AbsoluteLayout>
         </Grid>
-        <StackLayout x:Name="MainStackLayout"
-                     BackgroundColor="#383838"
-                     Margin="0,0,0,20"
-                     Grid.Row="2"
-                     Grid.ColumnSpan="2"
-                     Padding="5">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="model:Article">
-                    <Frame BackgroundColor="#7a7a7a" CornerRadius="10">
-                        <StackLayout Grid.Column="1" Margin="10,0,0,0" Spacing="5">
-                            <Border StrokeShape="RoundRectangle 10" Stroke="gray">
-                                <Image Source="https://cdn.mos.cms.futurecdn.net/YDDJGnLfoCvjEPU9PLCkj9-970-80.jpg.webp" Aspect="AspectFill"  />
-                            </Border>
-                            <Label TextColor="White" Text="The SteelSeries Destiny 2: Lightfall themed peripherals are gorgeous" FontSize="Medium" FontAttributes="Bold"/>
-                            <Label MaxLines="5" TextColor="White" Text="Here at PC Gamer I review a bunch of peripherals and hardware all designed to make PC gaming sing. Peripherals especially have come a long way since the early days. There's countless brands out there all pushing their own ideas, which is why it's odd to me that most peripherals still come in the same boring combination of colours and styles. Those of us wanting more colourful accessories often have to rely on RGB lighting to get us through, but sometimes themed releases have our backs." FontSize="Small"/>
-                            <Button Text="Read More" BackgroundColor="#383838" TextColor="White" CornerRadius="5" Margin="0,10,0,0"/>
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+        <ScrollView Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2">
+            <StackLayout BindableLayout.ItemsSource="{Binding FilterService.Articles}"
+                         Grid.Row="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         BackgroundColor="#383838">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="model:Article">
+                        <Frame BackgroundColor="#7a7a7a"
+                               CornerRadius="10"
+                               Margin="10">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Frame CornerRadius="10"
+                                       Grid.Column="0"
+                                       Padding="0"
+                                       Margin="0"
+                                       WidthRequest="100"
+                                       HeightRequest="100">
+                                    <Image Source="dr_logo.png"
+                                           Aspect="AspectFill" />
+                                </Frame>
+                                <StackLayout Grid.Column="1"
+                                             Margin="10, 0, 0, 0"
+                                             Spacing="5">
+                                    <Label TextColor="#fff"
+                                           Text="{Binding Title}"
+                                           FontSize="Medium"
+                                           FontAttributes="Bold"/>
+                                    <Label TextColor="#fff"
+                                           Text="{Binding Link}"
+                                           FontSize="Small"
+                                           MaxLines="5"/>
+                                    <Label TextColor="#fff"
+                                           Text="{Binding PubDate}"
+                                           FontSize="Small"
+                                           MaxLines="5"/>
+
+                                    <Button Text="Read More"
+                                            BackgroundColor="#383838"
+                                            TextColor="#fff"
+                                            CornerRadius="5"
+                                            Margin="0, 10, 0, 0"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}},
+                                                        Path=ReadMoreCommand}"
+                                            CommandParameter="{Binding Link}"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>

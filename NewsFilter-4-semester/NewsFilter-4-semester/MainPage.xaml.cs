@@ -1,17 +1,15 @@
-﻿using NewsFilter_4_semester.Pages;
+﻿using NewsFilter_4_semester.Models;
+using NewsFilter_4_semester.ViewModels;
+using System.Collections.ObjectModel;
 
-namespace NewsFilter_4_semester;
-
-public partial class MainPage : ContentPage
+namespace NewsFilter_4_semester
 {
-	public MainPage()
-	{
-		InitializeComponent();
-	}
-
-    private async void SettingsBtn_Click(object sender, EventArgs e)
+    public partial class MainPage : ContentPage
     {
-        await Navigation.PushModalAsync(new SettingsPage());
+        public MainPage(MainViewModel model)
+        {
+            InitializeComponent();
+            BindingContext = model;
+        }
     }
 }
-

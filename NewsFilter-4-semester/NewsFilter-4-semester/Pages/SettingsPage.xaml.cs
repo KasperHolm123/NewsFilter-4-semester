@@ -1,20 +1,20 @@
 using NewsFilter_4_semester.Resources.Themes;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
-using Microsoft.Maui.ApplicationModel;
+using NewsFilter_4_semester.ViewModels;
 
 namespace NewsFilter_4_semester.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    public SettingsPage()
+    public SettingsPage(SettingsPageViewModel model)
     {
         InitializeComponent();
+        BindingContext = model;
     }
 
     private void ThemeSwitch_Toggled(object sender, ToggledEventArgs e)
     {
         if (e.Value)
+        void ThemeSwitch_Toggled(object sender, EventArgs e)
         {
             App.Current.UserAppTheme = AppTheme.Dark;
         }
@@ -79,7 +79,7 @@ public partial class SettingsPage : ContentPage
 
 }
 
-//Forsøg på at binde det til ContentPage
+//Forsï¿½g pï¿½ at binde det til ContentPage
 //public static class ThemeHelper
 //{
 //    public static void ApplyTheme(Page page)
