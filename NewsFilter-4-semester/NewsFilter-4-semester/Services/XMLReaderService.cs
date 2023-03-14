@@ -27,7 +27,6 @@ namespace NewsFilter_4_semester.Services
                     Link = syndicationItem.Links[0].Uri.ToString(),
                     PubDate = syndicationItem.PublishDate.DateTime
                 });
-                Debug.WriteLine(syndicationItem.PublishDate.DateTime);
             }
             articles.Sort((x, y) => DateTime.Compare(y.PubDate, x.PubDate));
             return Task.FromResult(articles);

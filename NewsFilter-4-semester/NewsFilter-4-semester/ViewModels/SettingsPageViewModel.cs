@@ -24,7 +24,17 @@ namespace NewsFilter_4_semester.ViewModels
 
         #region Fields
         public FilterService FilterService { get; set; }
-        public string FilterWord { get; set; }
+
+        private string _filterWord;
+        public string FilterWord
+        {
+            get => _filterWord;
+            set
+            {
+                _filterWord = value;
+                NotifyPropertyChanged();
+            }
+        }
         #endregion
 
         public SettingsPageViewModel(FilterService filterService)
@@ -39,6 +49,8 @@ namespace NewsFilter_4_semester.ViewModels
             {
                 FilterService.Filters.Add(new Filter { Keyword = FilterWord.ToUpper() });
             }
+            // clear input field
+            FilterWord = "";
         }
 
         [RelayCommand]
