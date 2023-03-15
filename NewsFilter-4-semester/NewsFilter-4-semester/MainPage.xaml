@@ -4,13 +4,13 @@
              xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:NewsFilter_4_semester"
-             Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
              mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:MainViewModel"
              x:Class="NewsFilter_4_semester.MainPage">
-    
+
     <Grid ColumnDefinitions="*, *"
           RowDefinitions="100, *"
           VerticalOptions="Start">
@@ -21,12 +21,6 @@
                 <Image Source="newspaper.png" 
                        HorizontalOptions="Start"
                        Margin="5,5,0,0"/>
-                <Button Text="Settings"
-                        BackgroundColor="Gray"
-                        HeightRequest="50"
-                        HorizontalOptions="End"
-                        Command="{Binding ChangePageCommand}"
-                        CommandParameter="SettingsPage" />
             </Grid>
             <AbsoluteLayout VerticalOptions="Start"
                             BackgroundColor="Gray"
