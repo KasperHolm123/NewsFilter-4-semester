@@ -12,49 +12,18 @@
              x:Class="NewsFilter_4_semester.MainPage">
 
     <Grid ColumnDefinitions="*, *"
-          RowDefinitions="100, *"
+          RowDefinitions="50, *"
           VerticalOptions="Start">
-        <Grid RowDefinitions="50, *"
-              BackgroundColor="Gray"
+        <Grid BackgroundColor="Gray"
               Grid.ColumnSpan="2">
-            <Grid Grid.Row="0">
-                <Image Source="newspaper.png" 
-                       HorizontalOptions="Start"
-                       Margin="5,5,0,0"/>
-                <Picker HorizontalOptions="End"
-                        Title="Category"
-                        ItemsSource="{Binding FeedsArray}"
-                        SelectedItem="{Binding CurrentFeed}">
-                </Picker>
-            </Grid>
-            <AbsoluteLayout VerticalOptions="Start"
-                            BackgroundColor="Gray"
-                            Grid.Row="1">
-                <Button Text="Latest"
-                        WidthRequest="75"
-                        FontSize="11"
-                        BackgroundColor="Gray"
-                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0, 1, 50, 50"
-                        Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/senestenyt" />
-                <Button Text="World"
-                        WidthRequest="75"
-                        FontSize="11"
-                        BackgroundColor="Gray"
-                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.5, 1, 50, 50"
-                        Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/udland" />
-                <Button Text="Sport"
-                        WidthRequest="100"
-                        FontSize="11"
-                        BackgroundColor="Gray"
-                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                        AbsoluteLayout.LayoutBounds="0.98, 1, 50, 50"
-                        Command="{Binding Path=ChangeShownArticlesCommand}"
-                        CommandParameter="https://www.dr.dk/nyheder/service/feeds/sporten" />
-            </AbsoluteLayout>
+            <Image Source="newspaper.png" 
+                   HorizontalOptions="Start"
+                   Margin="5,5,0,0"/>
+            <Picker HorizontalOptions="End"
+                    Title="Category"
+                    ItemsSource="{Binding FeedsArray}"
+                    SelectedItem="{Binding CurrentFeed}">
+            </Picker>
         </Grid>
         <!--<RefreshView Grid.Row="1"
                      Grid.Column="0"
@@ -65,43 +34,43 @@
         <ScrollView Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2">
-                <StackLayout BindableLayout.ItemsSource="{Binding FilterService.Articles}"
-                         Grid.Row="2"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2"
-                         BackgroundColor="#383838">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="model:Article">
-                            <Frame BackgroundColor="#7a7a7a"
-                               CornerRadius="10"
-                               Margin="10">
-                                <Grid ColumnDefinitions="Auto, *">
-                                    <Frame CornerRadius="10"
-                                       Grid.Column="0"
-                                       Padding="0"
-                                       Margin="0"
-                                       WidthRequest="100"
-                                       HeightRequest="100">
-                                        <Image Source="dr_logo.png"
-                                           Aspect="AspectFill" />
-                                    </Frame>
-                                    <StackLayout Grid.Column="1"
+            <StackLayout BindableLayout.ItemsSource="{Binding FilterService.Articles}"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             BackgroundColor="#383838">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="model:Article">
+                        <Frame BackgroundColor="#7a7a7a"
+                                   CornerRadius="10"
+                                   Margin="10">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Frame CornerRadius="10"
+                                           Grid.Column="0"
+                                           Padding="0"
+                                           Margin="0"
+                                           WidthRequest="100"
+                                           HeightRequest="100">
+                                    <Image Source="dr_logo.png"
+                                            Aspect="AspectFill" />
+                                </Frame>
+                                <StackLayout Grid.Column="1"
                                              Margin="10, 0, 0, 0"
                                              Spacing="5">
-                                        <Label TextColor="#fff"
+                                    <Label TextColor="#fff"
                                            Text="{Binding Title}"
                                            FontSize="Medium"
                                            FontAttributes="Bold"/>
-                                        <Label TextColor="#fff"
+                                    <Label TextColor="#fff"
                                            Text="{Binding Link}"
                                            FontSize="Small"
                                            MaxLines="5"/>
-                                        <Label TextColor="#fff"
+                                    <Label TextColor="#fff"
                                            Text="{Binding PubDate}"
                                            FontSize="Small"
                                            MaxLines="5"/>
 
-                                        <Button Text="Read More"
+                                    <Button Text="Read More"
                                             BackgroundColor="#383838"
                                             TextColor="#fff"
                                             CornerRadius="5"
@@ -109,12 +78,12 @@
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}},
                                                         Path=ReadMoreCommand}"
                                             CommandParameter="{Binding Link}"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-            </ScrollView>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>
