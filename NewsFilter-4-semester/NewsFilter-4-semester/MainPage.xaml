@@ -21,6 +21,11 @@
                 <Image Source="newspaper.png" 
                        HorizontalOptions="Start"
                        Margin="5,5,0,0"/>
+                <Picker HorizontalOptions="End"
+                        Title="Category"
+                        ItemsSource="{Binding FeedsArray}"
+                        SelectedItem="{Binding CurrentFeed}">
+                </Picker>
             </Grid>
             <AbsoluteLayout VerticalOptions="Start"
                             BackgroundColor="Gray"
@@ -51,12 +56,15 @@
                         CommandParameter="https://www.dr.dk/nyheder/service/feeds/sporten" />
             </AbsoluteLayout>
         </Grid>
-        <RefreshView Grid.Row="1"
+        <!--<RefreshView Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
                      IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding Path=RefreshCommand}">
-            <ScrollView>
+        </RefreshView>-->
+        <ScrollView Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2">
                 <StackLayout BindableLayout.ItemsSource="{Binding FilterService.Articles}"
                          Grid.Row="2"
                          Grid.Column="0"
@@ -108,6 +116,5 @@
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
             </ScrollView>
-        </RefreshView>
     </Grid>
 </ContentPage>

@@ -31,20 +31,42 @@ namespace NewsFilter_4_semester.ViewModels
             }
         }
 
-        public string CurrentFeed { get; set; }
+        private string _currentFeed;
+        public string CurrentFeed
+        {
+            get => _currentFeed;
+            set
+            {
+                _currentFeed = value;
+                Refresh();
+            }
+        }
+
+        public string[] FeedsArray { get; set; } = new string[3]
+        {
+            "Latest",
+            "World",
+            "Sport",
+        };
+        public Dictionary<string, string> FeedsDict { get; set; } = new Dictionary<string, string>()
+        {
+            { "Latest", "https://www.dr.dk/nyheder/service/feeds/senestenyt" },
+            { "World", "https://www.dr.dk/nyheder/service/feeds/udland" },
+            { "Sport", "https://www.dr.dk/nyheder/service/feeds/sporten" }
+        };
         #endregion
 
         public MainViewModel(FilterService filterService)
         {
             FilterService = filterService;
             FilterService.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
-            CurrentFeed = "https://www.dr.dk/nyheder/service/feeds/senestenyt";
+            CurrentFeed = "Latest";
         }
 
         [RelayCommand]
         public async Task Refresh()
         {
-            await ChangeShownArticles(CurrentFeed);
+            await ChangeShownArticles(FeedsDict[CurrentFeed]);
             IsRefreshing = false;
         }
 
@@ -57,7 +79,6 @@ namespace NewsFilter_4_semester.ViewModels
             {
                 FilterService.FilterArticles();
             }
-            CurrentFeed = url;
         }
 
         [RelayCommand]
