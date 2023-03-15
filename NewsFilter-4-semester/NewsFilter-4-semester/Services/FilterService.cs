@@ -44,6 +44,7 @@ namespace NewsFilter_4_semester.Services
         }
 
         public bool IsFilterOn { get; set; } = false;
+        public bool IsWhiteListed { get; set; } = false;
         #endregion
 
         public FilterService()
@@ -53,11 +54,18 @@ namespace NewsFilter_4_semester.Services
 
         public List<Article> FilterArticles()
         {
-            List<Article> list = new List<Article>(Articles);
+            List<Article> list = new(Articles);
             foreach (var filter in Filters)
             {
                 // ToUpper() to normalize the title/keyword.
-                list.RemoveAll(x => x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
+                if (IsWhiteListed)
+                {
+                    list.RemoveAll(x => !x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
+                }
+                else
+                {
+                    list.RemoveAll(x => x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
+                }
             }
             Articles = list;
             return Articles;

@@ -1,13 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using NewsFilter_4_semester.Models;
 using NewsFilter_4_semester.Services;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewsFilter_4_semester.ViewModels
 {
