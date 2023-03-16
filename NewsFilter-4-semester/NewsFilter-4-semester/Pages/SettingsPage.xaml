@@ -6,55 +6,58 @@
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:SettingsPageViewModel">
-
-    <ScrollView>
-        <StackLayout x:Name="MainStackLayout">
-            <Label x:Name="MainLabel" FontSize="Large">Settings</Label>
-            <Label>Dark/Light mode</Label>
-            <Switch x:Name="ThemeSwitch"
-                    Toggled="ThemeSwitch_Toggled"
-                    OnColor="Orange"
-                    ThumbColor="DeepPink" />
+    <Grid RowDefinitions="*, *">
+        <Grid Grid.Row="0" 
+              RowDefinitions="*, *, *, *, *, *, *, *, *, *">
             <Label FontSize="Large"
+                   Grid.Row="0"
                    Text="Filter by keyword:" />
-            <Label Text="Turn on/off filter:" />
-            <Switch x:Name="FilterSwitch"
+            <Label Text="Turn on/off filter:" 
+                   Grid.Row="1"/>
+            <Switch Grid.Row="2"
                     OnColor="Orange"
                     ThumbColor="DeepPink"
                     IsToggled="{Binding FilterService.IsFilterOn}" />
-            <Label Text="Blacklist/Whitelist:" />
+            <Label Text="Blacklist/Whitelist:" 
+                   Grid.Row="3"/>
             <Label Text="Switch this to either blacklist or whitelist words"
-                   FontAttributes="Italic"/>
-            <Switch OnColor="Orange" 
+                   FontAttributes="Italic" 
+                   Grid.Row="4"/>
+            <Switch OnColor="Orange"
+                    Grid.Row="5"
                     ThumbColor="DeepPink" 
                     IsToggled="{Binding FilterService.IsWhiteListed}"/>
-            <Label Text="Filtered keywords:" />
+            <Label Text="Filtered keywords:" 
+                   Grid.Row="6"/>
             <Entry x:Name="KeywordEntry"
+                   Grid.Row="7"
                    Placeholder="Enter keyword to filter" Text="{Binding FilterWord}" />
-            <Button Text="Add Filter" 
+            <Button Text="Add Filter"
+                    Grid.Row="8"
                     Command="{Binding AddFilterCommand}" />
             <Label Text="Filtered Words:"
                    Margin="0,10,0,0"
+                   Grid.Row="9"
                    FontSize="18"/>
-            <CollectionView ItemsSource="{Binding FilterService.Filters}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Filter">
-                        <Grid ColumnDefinitions="*, 50">
-                            <Label Grid.Column="0"
+        </Grid>
+        <CollectionView ItemsSource="{Binding FilterService.Filters}"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Filter">
+                    <Grid ColumnDefinitions="*, 50">
+                        <Label Grid.Column="0"
                                     Text="{Binding Keyword}"
                                     VerticalOptions="Center"/>
-                            <Button Grid.Column="1"
+                        <Button Grid.Column="1"
                                     Text="X"
                                     HorizontalOptions="EndAndExpand"
                                     VerticalOptions="Center"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SettingsPageViewModel}},
                                                 Path=RemoveFilterCommand}"
                                     CommandParameter="{Binding .}"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </ScrollView>
-
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

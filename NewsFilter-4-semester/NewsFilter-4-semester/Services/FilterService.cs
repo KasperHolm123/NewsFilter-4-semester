@@ -1,12 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using NewsFilter_4_semester.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewsFilter_4_semester.Services
 {
@@ -23,7 +16,11 @@ namespace NewsFilter_4_semester.Services
         public bool IsWhiteListed { get; set; } = false;
         #endregion
 
-        public FilterService() => Filters = new();
+        public FilterService()
+        {
+            Filters = new();
+            Articles = new();
+        }
 
         public List<Article> FilterArticles()
         {

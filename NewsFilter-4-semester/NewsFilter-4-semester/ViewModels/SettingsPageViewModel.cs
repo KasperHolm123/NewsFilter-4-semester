@@ -14,7 +14,10 @@ namespace NewsFilter_4_semester.ViewModels
         private string _filterWord;
         #endregion
 
-        public SettingsPageViewModel(FilterService filterService) => FilterService = filterService;
+        public SettingsPageViewModel(FilterService filterService)
+        {
+            FilterService = filterService;
+        }
 
         [RelayCommand]
         public void AddFilter()
