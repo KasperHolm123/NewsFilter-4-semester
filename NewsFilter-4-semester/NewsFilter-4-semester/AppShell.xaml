@@ -12,6 +12,11 @@
         </Tab>
         
     </FlyoutItem>
+    <FlyoutItem Title="Filters">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:FilterPage}"/>
+        </Tab>
+    </FlyoutItem>
     <FlyoutItem Title="Settings">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}"/>
