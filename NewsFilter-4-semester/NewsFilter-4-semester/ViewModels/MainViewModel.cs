@@ -17,10 +17,7 @@ namespace NewsFilter_4_semester.ViewModels
         [ObservableProperty]
         private string _currentFeed;
 
-        async partial void OnCurrentFeedChanged(string value)
-        {
-            await Refresh();
-        }
+        async partial void OnCurrentFeedChanged(string value) => await Refresh();
 
         public string[] FeedsArray { get; set; } = new string[3]
         {
@@ -63,15 +60,9 @@ namespace NewsFilter_4_semester.ViewModels
         }
 
         [RelayCommand]
-        public static async Task ChangePage(string uri)
-        {
-            await Shell.Current.GoToAsync(uri);
-        }
+        public static async Task ChangePage(string uri) => await Shell.Current.GoToAsync(uri);
 
         [RelayCommand]
-        public static async Task ReadMore(string url)
-        {
-            await Browser.Default.OpenAsync(url);
-        }
+        public static async Task ReadMore(string url) => await Browser.Default.OpenAsync(url);
     }
 }

@@ -23,10 +23,7 @@ namespace NewsFilter_4_semester.Services
         public bool IsWhiteListed { get; set; } = false;
         #endregion
 
-        public FilterService()
-        {
-            Filters = new();
-        }
+        public FilterService() => Filters = new();
 
         public List<Article> FilterArticles()
         {
