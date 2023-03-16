@@ -1,35 +1,20 @@
-﻿﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NewsFilter_4_semester.Services;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.ViewModels
 {
     
-    public partial class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel : BaseViewModel
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
 
         #region Fields
-        public FilterService FilterService { get; set; }
 
+        [ObservableProperty]
         private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set
-            {
-                _isRefreshing = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         private string _currentFeed;
         public string CurrentFeed
@@ -38,6 +23,7 @@ namespace NewsFilter_4_semester.ViewModels
             set
             {
                 _currentFeed = value;
+                // Call Refresh() here to ensure that the view is refreshed everytime CurrentFeed is updated.
                 Refresh();
             }
         }

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NewsFilter_4_semester.Models;
 using NewsFilter_4_semester.Services;
 using System.ComponentModel;
@@ -6,30 +7,11 @@ using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.ViewModels
 {
-    public partial class SettingsPageViewModel : INotifyPropertyChanged
+    public partial class SettingsPageViewModel : BaseViewModel
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Fields
-        public FilterService FilterService { get; set; }
-
+        [ObservableProperty]
         private string _filterWord;
-        public string FilterWord
-        {
-            get => _filterWord;
-            set
-            {
-                _filterWord = value;
-                NotifyPropertyChanged();
-            }
-        }
         #endregion
 
         public SettingsPageViewModel(FilterService filterService)

@@ -1,4 +1,5 @@
-﻿using NewsFilter_4_semester.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using NewsFilter_4_semester.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,39 +10,14 @@ using System.Threading.Tasks;
 
 namespace NewsFilter_4_semester.Services
 {
-    public class FilterService : INotifyPropertyChanged
+    public partial class FilterService : ObservableObject
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Fields
+        [ObservableProperty]
         private static List<Filter> _filters;
-        public List<Filter> Filters
-        {
-            get => _filters;
-            set
-            {
-                _filters = value;
-                NotifyPropertyChanged();
-            }
-        }
 
+        [ObservableProperty]
         private static List<Article> _articles;
-        public List<Article> Articles
-        {
-            get => _articles;
-            set
-            {
-                _articles = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         public bool IsFilterOn { get; set; } = false;
         public bool IsWhiteListed { get; set; } = false;
