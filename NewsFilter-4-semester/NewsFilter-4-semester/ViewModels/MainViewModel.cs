@@ -7,25 +7,19 @@ using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.ViewModels
 {
-    
     public partial class MainViewModel : BaseViewModel
     {
-
         #region Fields
 
         [ObservableProperty]
         private bool _isRefreshing;
 
+        [ObservableProperty]
         private string _currentFeed;
-        public string CurrentFeed
+
+        async partial void OnCurrentFeedChanged(string value)
         {
-            get => _currentFeed;
-            set
-            {
-                _currentFeed = value;
-                // Call Refresh() here to ensure that the view is refreshed everytime CurrentFeed is updated.
-                Refresh();
-            }
+            await Refresh();
         }
 
         public string[] FeedsArray { get; set; } = new string[3]
@@ -34,6 +28,7 @@ namespace NewsFilter_4_semester.ViewModels
             "World",
             "Sport",
         };
+
         public Dictionary<string, string> FeedsDict { get; set; } = new Dictionary<string, string>()
         {
             { "Latest", "https://www.dr.dk/nyheder/service/feeds/senestenyt" },
