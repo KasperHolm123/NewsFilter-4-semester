@@ -22,9 +22,4 @@
             <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}"/>
         </Tab>
     </FlyoutItem>
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
-
 </Shell>

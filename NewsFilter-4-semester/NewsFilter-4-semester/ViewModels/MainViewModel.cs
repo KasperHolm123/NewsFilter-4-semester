@@ -69,7 +69,7 @@ namespace NewsFilter_4_semester.ViewModels
             }
             catch (Exception ex)
             {
-                Shell.Current.DisplayAlert("Error", "Error while getting articles", "OK");
+                await Shell.Current.DisplayAlert("Error", "Error while getting articles", "OK");
             }
             finally
             {
