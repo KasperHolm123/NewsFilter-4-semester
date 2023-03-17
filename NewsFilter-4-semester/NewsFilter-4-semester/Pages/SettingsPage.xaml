@@ -6,7 +6,9 @@
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:SettingsPageViewModel">
-    <Grid>
-        <Label Text="TODO"/>
-    </Grid>
+    <StackLayout>
+        <Label Text="Change theme (Light/Dark)"
+               FontSize="Large"/>
+        <Switch IsToggled="{Binding IsDarkTheme}"/>
+    </StackLayout>
 </ContentPage>

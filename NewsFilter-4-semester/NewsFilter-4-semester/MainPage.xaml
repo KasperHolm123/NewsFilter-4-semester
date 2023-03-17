@@ -31,7 +31,7 @@
                      IsRefreshing="{Binding IsRefreshing}"
                      IsEnabled="{Binding IsBusy}"
                      Command="{Binding RefreshCommand}">
-            <CollectionView ItemsSource="{Binding FilterService.Articles}"
+            <CollectionView ItemsSource="{Binding FilterServiceObj.Articles}"
                             EmptyView="No articles found">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Article">

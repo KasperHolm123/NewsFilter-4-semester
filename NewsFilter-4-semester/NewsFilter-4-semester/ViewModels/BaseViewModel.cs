@@ -11,6 +11,6 @@ namespace NewsFilter_4_semester.ViewModels
     public partial class BaseViewModel : ObservableObject
     {
         [ObservableProperty]
-        private FilterService _filterService;
+        private FilterService _filterServiceObj;
     }
 }

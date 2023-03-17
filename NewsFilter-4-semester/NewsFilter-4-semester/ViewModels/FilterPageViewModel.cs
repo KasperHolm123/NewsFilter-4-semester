@@ -20,7 +20,7 @@ namespace NewsFilter_4_semester.ViewModels
 
         public FilterPageViewModel(FilterService filterService)
         {
-            FilterService = filterService;
+            FilterServiceObj = filterService;
         }
 
         [RelayCommand]
@@ -29,7 +29,7 @@ namespace NewsFilter_4_semester.ViewModels
             if (FilterWord != null && FilterWord != string.Empty && FilterWord != "")
             {
                 // ToUpper() to normalize values
-                FilterService.Filters.Add(new Filter { Keyword = FilterWord.ToUpper() });
+                FilterServiceObj.Filters.Add(new Filter { Keyword = FilterWord.ToUpper() });
             }
             // clear input field
             FilterWord = "";
@@ -39,7 +39,7 @@ namespace NewsFilter_4_semester.ViewModels
         public void RemoveFilter(Filter filter)
         {
             // ToUpper() to normalize values
-            FilterService.Filters.RemoveAll(x => x.Keyword.ToUpper() == filter.Keyword.ToUpper());
+            FilterServiceObj.Filters.RemoveAll(x => x.Keyword.ToUpper() == filter.Keyword.ToUpper());
         }
     }
 }

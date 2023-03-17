@@ -39,8 +39,8 @@ namespace NewsFilter_4_semester.ViewModels
 
         public MainViewModel(FilterService filterService)
         {
-            FilterService = filterService;
-            FilterService.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
+            FilterServiceObj = filterService;
+            FilterServiceObj.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
             CurrentFeed = "Latest";
             IsBusy = false;
         }
@@ -61,10 +61,10 @@ namespace NewsFilter_4_semester.ViewModels
                 IsBusy = true;
 
                 var task = Task.Run(() => XMLReaderService.GetArticles(url));
-                FilterService.Articles = await task;
-                if (FilterService.IsFilterOn)
+                FilterServiceObj.Articles = await task;
+                if (FilterServiceObj.IsFilterOn)
                 {
-                    FilterService.FilterArticles();
+                    FilterServiceObj.FilterArticles();
                 }
             }
             catch (Exception ex)

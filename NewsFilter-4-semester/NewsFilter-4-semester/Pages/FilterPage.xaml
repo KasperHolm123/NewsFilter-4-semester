@@ -17,7 +17,7 @@
             <Switch Grid.Row="2"
                     OnColor="Orange"
                     ThumbColor="DeepPink"
-                    IsToggled="{Binding FilterService.IsFilterOn}" />
+                    IsToggled="{Binding FilterServiceObj.IsFilterOn}" />
             <Label Text="Blacklist/Whitelist:" 
                    Grid.Row="3"/>
             <Label Text="Switch this to either blacklist or whitelist words"
@@ -26,7 +26,7 @@
             <Switch OnColor="Orange"
                     Grid.Row="5"
                     ThumbColor="DeepPink" 
-                    IsToggled="{Binding FilterService.IsWhiteListed}"/>
+                    IsToggled="{Binding FilterServiceObj.IsWhiteListed}"/>
             <Label Text="Filtered keywords:" 
                    Grid.Row="6"/>
             <Entry x:Name="KeywordEntry"
@@ -40,7 +40,7 @@
                    Grid.Row="9"
                    FontSize="18"/>
         </StackLayout>
-        <CollectionView ItemsSource="{Binding FilterService.Filters}"
+        <CollectionView ItemsSource="{Binding FilterServiceObj.Filters}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Filter">
