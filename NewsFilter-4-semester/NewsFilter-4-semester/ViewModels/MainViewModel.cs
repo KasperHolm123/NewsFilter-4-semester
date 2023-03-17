@@ -17,7 +17,10 @@ namespace NewsFilter_4_semester.ViewModels
         [ObservableProperty]
         private string _currentFeed;
 
-        async partial void OnCurrentFeedChanged(string value) => await Refresh();
+        [ObservableProperty]
+        private bool _isBusy;
+
+        async partial void OnCurrentFeedChanged(string value) => await RefreshAsync();
 
         public string[] FeedsArray { get; set; } = new string[3]
         {
@@ -39,23 +42,38 @@ namespace NewsFilter_4_semester.ViewModels
             FilterService = filterService;
             FilterService.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
             CurrentFeed = "Latest";
+            IsBusy = false;
         }
 
         [RelayCommand]
-        public async Task Refresh()
+        public async Task RefreshAsync()
         {
-            await ChangeShownArticles(FeedsDict[CurrentFeed]);
+            await ChangeShownArticlesAsync(FeedsDict[CurrentFeed]);
             IsRefreshing = false;
         }
 
         [RelayCommand]
-        public async Task ChangeShownArticles(string url)
+        public async Task ChangeShownArticlesAsync(string url)
         {
-            var task = Task.Run(() => XMLReaderService.GetArticles(url));
-            FilterService.Articles = await task;
-            if (FilterService.IsFilterOn)
+            if (IsBusy) return;
+            try
             {
-                FilterService.FilterArticles();
+                IsBusy = true;
+
+                var task = Task.Run(() => XMLReaderService.GetArticles(url));
+                FilterService.Articles = await task;
+                if (FilterService.IsFilterOn)
+                {
+                    FilterService.FilterArticles();
+                }
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Error", "Error while getting articles", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 

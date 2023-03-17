@@ -8,8 +8,7 @@
              x:DataType="viewmodels:FilterPageViewModel">
     
     <Grid RowDefinitions="*, *">
-        <Grid Grid.Row="0" 
-              RowDefinitions="*, *, *, *, *, *, *, *, *, *">
+        <StackLayout Grid.Row="0">
             <Label FontSize="Large"
                    Grid.Row="0"
                    Text="Filter by keyword:" />
@@ -40,7 +39,7 @@
                    Margin="0,10,0,0"
                    Grid.Row="9"
                    FontSize="18"/>
-        </Grid>
+        </StackLayout>
         <CollectionView ItemsSource="{Binding FilterService.Filters}"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
@@ -53,7 +52,7 @@
                                     Text="X"
                                     HorizontalOptions="EndAndExpand"
                                     VerticalOptions="Center"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SettingsPageViewModel}},
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:FilterPageViewModel}},
                                                 Path=RemoveFilterCommand}"
                                     CommandParameter="{Binding .}"/>
                     </Grid>
