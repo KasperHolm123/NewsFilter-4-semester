@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using NewsFilter_4_semester.Models;
+using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.Services
 {
@@ -7,10 +9,10 @@ namespace NewsFilter_4_semester.Services
     {
         #region Fields
         [ObservableProperty]
-        private static List<Filter> _filters;
+        private static ObservableCollection<Filter> _filters;
 
         [ObservableProperty]
-        private static List<Article> _articles;
+        private static ObservableCollection<Article> _articles;
 
         public bool IsFilterOn { get; set; } = false;
         public bool IsWhiteListed { get; set; } = false;
@@ -22,22 +24,18 @@ namespace NewsFilter_4_semester.Services
             Articles = new();
         }
 
-        public List<Article> FilterArticles()
+        public ObservableCollection<Article> FilterArticles()
         {
             List<Article> list = new(Articles);
             foreach (var filter in Filters)
             {
                 // ToUpper() to normalize the title/keyword.
                 if (IsWhiteListed)
-                {
                     list.RemoveAll(x => !x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
-                }
                 else
-                {
                     list.RemoveAll(x => x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
-                }
             }
-            Articles = list;
+            Articles = new(list);
             return Articles;
         }
     }

@@ -63,7 +63,8 @@ namespace NewsFilter_4_semester.ViewModels
         [RelayCommand]
         public async Task ChangeShownArticlesAsync(string url)
         {
-            if (IsBusy) return;
+            if (IsBusy)
+                return;
             try
             {
                 IsBusy = true;
@@ -71,13 +72,11 @@ namespace NewsFilter_4_semester.ViewModels
                 var task = Task.Run(() => XMLReaderService.GetArticles(url));
                 FilterServiceObj.Articles = await task;
                 if (FilterServiceObj.IsFilterOn)
-                {
                     FilterServiceObj.FilterArticles();
-                }
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", "Error while getting articles", "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
             finally
             {

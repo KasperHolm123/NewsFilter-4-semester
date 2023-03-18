@@ -23,7 +23,6 @@ namespace NewsFilter_4_semester.ViewModels
                 IsDarkTheme = false;
             else
                 IsDarkTheme = true;
-            Debug.WriteLine(Application.Current.RequestedTheme);
         }
 
         [RelayCommand]

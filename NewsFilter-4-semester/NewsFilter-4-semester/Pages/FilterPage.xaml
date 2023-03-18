@@ -40,9 +40,9 @@
                    Grid.Row="9"
                    FontSize="18"/>
         </StackLayout>
-        <CollectionView ItemsSource="{Binding FilterServiceObj.Filters}"
+        <StackLayout BindableLayout.ItemsSource="{Binding FilterServiceObj.Filters}"
                         Grid.Row="1">
-            <CollectionView.ItemTemplate>
+            <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="model:Filter">
                     <Grid ColumnDefinitions="*, 50">
                         <Label Grid.Column="0"
@@ -57,7 +57,7 @@
                                 CommandParameter="{Binding .}"/>
                     </Grid>
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
     </Grid>
 </ContentPage>
