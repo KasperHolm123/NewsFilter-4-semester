@@ -6,7 +6,7 @@
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
              x:DataType="viewmodels:FilterPageViewModel">
-    
+
     <Grid RowDefinitions="*, *">
         <StackLayout Grid.Row="0">
             <Label FontSize="Large"
@@ -46,15 +46,15 @@
                 <DataTemplate x:DataType="model:Filter">
                     <Grid ColumnDefinitions="*, 50">
                         <Label Grid.Column="0"
-                                    Text="{Binding Keyword}"
-                                    VerticalOptions="Center"/>
+                               Text="{Binding Keyword}"
+                               VerticalOptions="Center"/>
                         <Button Grid.Column="1"
-                                    Text="X"
-                                    HorizontalOptions="EndAndExpand"
-                                    VerticalOptions="Center"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:FilterPageViewModel}},
-                                                Path=RemoveFilterCommand}"
-                                    CommandParameter="{Binding .}"/>
+                                Text="X"
+                                HorizontalOptions="EndAndExpand"
+                                VerticalOptions="Center"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:FilterPageViewModel}},
+                                Path=RemoveFilterCommand}"
+                                CommandParameter="{Binding .}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

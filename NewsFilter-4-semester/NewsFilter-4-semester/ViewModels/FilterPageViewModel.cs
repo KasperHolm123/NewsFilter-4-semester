@@ -18,10 +18,7 @@ namespace NewsFilter_4_semester.ViewModels
         #endregion
 
 
-        public FilterPageViewModel(FilterService filterService)
-        {
-            FilterServiceObj = filterService;
-        }
+        public FilterPageViewModel(FilterService filterService) => FilterServiceObj = filterService;
 
         [RelayCommand]
         public void AddFilter()

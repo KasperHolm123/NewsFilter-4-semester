@@ -14,10 +14,8 @@
     <Grid ColumnDefinitions="*, *"
           RowDefinitions="50, *"
           VerticalOptions="Start">
-        <Grid
-              Grid.ColumnSpan="2">
-            <Image Source="newspaper.png" 
-                   HorizontalOptions="Start"
+        <Grid Grid.ColumnSpan="2">
+            <Image Source="newspaper.png"
                    Margin="5,5,0,0"/>
             <Picker HorizontalOptions="End"
                     Title="Category"

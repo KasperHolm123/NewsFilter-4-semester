@@ -1,14 +1,16 @@
-﻿using NewsFilter_4_semester.Pages;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using NewsFilter_4_semester.Pages;
 
 namespace NewsFilter_4_semester;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+    public AppShell()
 	{
 		InitializeComponent();
 
         Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         Routing.RegisterRoute(nameof(FilterPage), typeof(FilterPage));
+        Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
     }
 }
