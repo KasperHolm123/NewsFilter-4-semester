@@ -33,7 +33,7 @@ namespace NewsFilter_4_semester.ViewModels
         }
 
         [RelayCommand]
-        public void RemoveFilter(Filter filter)
+        public void DeleteFilter(Filter filter)
         {
             // ToUpper() to normalize values
             FilterServiceObj.Filters.RemoveAll(x => x.Keyword.ToUpper() == filter.Keyword.ToUpper());

@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using NewsFilter_4_semester.Models;
+using NewsFilter_4_semester.Pages;
 using NewsFilter_4_semester.Services;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.CompilerServices;
 
@@ -20,7 +23,12 @@ namespace NewsFilter_4_semester.ViewModels
         [ObservableProperty]
         private bool _isBusy;
 
-        async partial void OnCurrentFeedChanged(string value) => await RefreshAsync();
+        async partial void OnCurrentFeedChanged(string value) 
+        {
+            await RefreshAsync();
+            Debug.WriteLine(IsBusy);
+        }
+        
 
         public string[] FeedsArray { get; set; } = new string[3]
         {
@@ -81,6 +89,18 @@ namespace NewsFilter_4_semester.ViewModels
         public static async Task ChangePage(string uri) => await Shell.Current.GoToAsync(uri);
 
         [RelayCommand]
-        public static async Task ReadMore(string url) => await Browser.Default.OpenAsync(url);
+        public static async Task ReadMore(Article article)
+        {
+            var detailedArticle = new DetailedArticle()
+            {
+                Title = article.Title,
+                Link = article.Link,
+                PubDate = article.PubDate,
+            };
+            await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+            {
+                { "Article", detailedArticle }
+            });
+        }
     }
 }

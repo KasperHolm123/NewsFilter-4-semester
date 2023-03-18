@@ -53,7 +53,7 @@
                                 HorizontalOptions="EndAndExpand"
                                 VerticalOptions="Center"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:FilterPageViewModel}},
-                                Path=RemoveFilterCommand}"
+                                Path=DeleteFilterCommand}"
                                 CommandParameter="{Binding .}"/>
                     </Grid>
                 </DataTemplate>
