@@ -18,31 +18,31 @@ namespace NewsFilter_4_semester.ViewModels
         private bool _isRefreshing;
 
         [ObservableProperty]
-        private string _currentFeed;
-
-        [ObservableProperty]
         private bool _isBusy;
 
-        async partial void OnCurrentFeedChanged(string value) 
-        {
-            await RefreshAsync();
-            Debug.WriteLine(IsBusy);
-        }
+        [ObservableProperty]
+        private string _currentFeed;
+        async partial void OnCurrentFeedChanged(string value) => await RefreshAsync();
+
         
-
-        public string[] FeedsArray { get; set; } = new string[3]
-        {
-            "Latest",
-            "World",
-            "Sport",
-        };
-
-        public Dictionary<string, string> FeedsDict { get; set; } = new Dictionary<string, string>()
+        public static Dictionary<string, string> FeedsDict { get; set; } = new Dictionary<string, string>()
         {
             { "Latest", "https://www.dr.dk/nyheder/service/feeds/senestenyt" },
+            { "Denmark", "https://www.dr.dk/nyheder/service/feeds/indland" },
+            { "Finance", "https://www.dr.dk/nyheder/service/feeds/penge" },
+            { "Politics", "https://www.dr.dk/nyheder/service/feeds/politik" },
+            { "Knowledge", "https://www.dr.dk/nyheder/service/feeds/viden" },
+            { "Culture", "https://www.dr.dk/nyheder/service/feeds/kultur" },
+            { "Music", "https://www.dr.dk/nyheder/service/feeds/musik" },
+            { "My Life", "https://www.dr.dk/nyheder/service/feeds/mitliv" },
+            { "Food", "https://www.dr.dk/nyheder/service/feeds/mad" },
+            { "Weather", "https://www.dr.dk/nyheder/service/feeds/vejret" },
+            { "Regional", "https://www.dr.dk/nyheder/service/feeds/regionale" },
             { "World", "https://www.dr.dk/nyheder/service/feeds/udland" },
-            { "Sport", "https://www.dr.dk/nyheder/service/feeds/sporten" }
+            { "Sport", "https://www.dr.dk/nyheder/service/feeds/sporten" },
         };
+        
+        public List<string> RssFeeds { get; } = FeedsDict.Keys.ToList();
         #endregion
 
         public MainViewModel(FilterService filterService)
@@ -51,6 +51,12 @@ namespace NewsFilter_4_semester.ViewModels
             FilterServiceObj.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
             CurrentFeed = "Latest";
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        public void ChangeCurrentFeed(string text)
+        {
+            CurrentFeed = text;
         }
 
         [RelayCommand]

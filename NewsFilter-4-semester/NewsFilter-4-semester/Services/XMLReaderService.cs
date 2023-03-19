@@ -27,8 +27,6 @@ namespace NewsFilter_4_semester.Services
                     PubDate = syndicationItem.PublishDate.DateTime
                 });
             }
-            // y before x to sort in descending order
-            //articles.Sort((x, y) => DateTime.Compare(y.PubDate, x.PubDate));
             return Task.FromResult(articles);
         }
     }

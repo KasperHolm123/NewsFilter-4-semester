@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:NewsFilter_4_semester"
     xmlns:views="clr-namespace:NewsFilter_4_semester.Pages">
 
-    <FlyoutItem Title="Front Page">
+    <FlyoutItem Title="Feed">
         <Tab>
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
         </Tab>
