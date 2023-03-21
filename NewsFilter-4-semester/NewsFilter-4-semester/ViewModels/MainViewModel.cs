@@ -1,75 +1,111 @@
-﻿﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using NewsFilter_4_semester.Models;
+using NewsFilter_4_semester.Pages;
 using NewsFilter_4_semester.Services;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Net;
 using System.Runtime.CompilerServices;
 
 namespace NewsFilter_4_semester.ViewModels
 {
-    
-    public partial class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel : BaseViewModel
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Fields
-        public FilterService FilterService { get; set; }
 
+        [ObservableProperty]
         private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set
-            {
-                _isRefreshing = value;
-                NotifyPropertyChanged();
-            }
-        }
 
-        public string CurrentFeed { get; set; }
+        [ObservableProperty]
+        private bool _isBusy;
+
+        [ObservableProperty]
+        private string _currentFeed;
+        async partial void OnCurrentFeedChanged(string value) => await RefreshAsync();
+
+        
+        public static Dictionary<string, string> FeedsDict { get; set; } = new Dictionary<string, string>()
+        {
+            { "Latest", "https://www.dr.dk/nyheder/service/feeds/senestenyt" },
+            { "Denmark", "https://www.dr.dk/nyheder/service/feeds/indland" },
+            { "Finance", "https://www.dr.dk/nyheder/service/feeds/penge" },
+            { "Politics", "https://www.dr.dk/nyheder/service/feeds/politik" },
+            { "Knowledge", "https://www.dr.dk/nyheder/service/feeds/viden" },
+            { "Culture", "https://www.dr.dk/nyheder/service/feeds/kultur" },
+            { "Music", "https://www.dr.dk/nyheder/service/feeds/musik" },
+            { "My Life", "https://www.dr.dk/nyheder/service/feeds/mitliv" },
+            { "Food", "https://www.dr.dk/nyheder/service/feeds/mad" },
+            { "Weather", "https://www.dr.dk/nyheder/service/feeds/vejret" },
+            { "Regional", "https://www.dr.dk/nyheder/service/feeds/regionale" },
+            { "World", "https://www.dr.dk/nyheder/service/feeds/udland" },
+            { "Sport", "https://www.dr.dk/nyheder/service/feeds/sporten" },
+        };
+        
+        public List<string> RssFeeds { get; } = FeedsDict.Keys.ToList();
         #endregion
 
         public MainViewModel(FilterService filterService)
         {
-            FilterService = filterService;
-            FilterService.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
-            CurrentFeed = "https://www.dr.dk/nyheder/service/feeds/senestenyt";
+            FilterServiceObj = filterService;
+            FilterServiceObj.Articles = Task.Run(() => XMLReaderService.GetArticles("https://www.dr.dk/nyheder/service/feeds/senestenyt")).Result;
+            CurrentFeed = "Latest";
+            IsBusy = false;
         }
 
         [RelayCommand]
-        public async Task Refresh()
+        public void ChangeCurrentFeed(string text)
         {
-            await ChangeShownArticles(CurrentFeed);
+            CurrentFeed = text;
+        }
+
+        [RelayCommand]
+        public async Task RefreshAsync()
+        {
+            await ChangeShownArticlesAsync(FeedsDict[CurrentFeed]);
             IsRefreshing = false;
         }
 
         [RelayCommand]
-        public async Task ChangeShownArticles(string url)
+        public async Task ChangeShownArticlesAsync(string url)
         {
-            var task = Task.Run(() => XMLReaderService.GetArticles(url));
-            FilterService.Articles = await task;
-            if (FilterService.IsFilterOn)
+            if (IsBusy)
+                return;
+            try
             {
-                FilterService.FilterArticles();
+                IsBusy = true;
+
+                var task = Task.Run(() => XMLReaderService.GetArticles(url));
+                FilterServiceObj.Articles = await task;
+                if (FilterServiceObj.IsFilterOn)
+                    FilterServiceObj.FilterArticles();
             }
-            CurrentFeed = url;
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         [RelayCommand]
-        public static async Task ChangePage(string uri)
-        {
-            await Shell.Current.GoToAsync(uri);
-        }
+        public static async Task ChangePage(string uri) => await Shell.Current.GoToAsync(uri);
 
         [RelayCommand]
-        public static async Task ReadMore(string url)
+        public static async Task ReadMore(Article article)
         {
-            await Browser.Default.OpenAsync(url);
+            var detailedArticle = new DetailedArticle()
+            {
+                Title = article.Title,
+                Link = article.Link,
+                PubDate = article.PubDate,
+            };
+            await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
+            {
+                { "Article", detailedArticle }
+            });
         }
     }
 }

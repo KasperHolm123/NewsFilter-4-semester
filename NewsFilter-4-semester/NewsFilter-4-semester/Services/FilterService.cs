@@ -1,47 +1,18 @@
-﻿using NewsFilter_4_semester.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using NewsFilter_4_semester.Models;
+using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewsFilter_4_semester.Services
 {
-    public class FilterService : INotifyPropertyChanged
+    public partial class FilterService : ObservableObject
     {
-        #region Interface implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Fields
-        private static List<Filter> _filters;
-        public List<Filter> Filters
-        {
-            get => _filters;
-            set
-            {
-                _filters = value;
-                NotifyPropertyChanged();
-            }
-        }
+        [ObservableProperty]
+        private static ObservableCollection<Filter> _filters;
 
-        private static List<Article> _articles;
-        public List<Article> Articles
-        {
-            get => _articles;
-            set
-            {
-                _articles = value;
-                NotifyPropertyChanged();
-            }
-        }
+        [ObservableProperty]
+        private static ObservableCollection<Article> _articles;
 
         public bool IsFilterOn { get; set; } = false;
         public bool IsWhiteListed { get; set; } = false;
@@ -50,24 +21,21 @@ namespace NewsFilter_4_semester.Services
         public FilterService()
         {
             Filters = new();
+            Articles = new();
         }
 
-        public List<Article> FilterArticles()
+        public ObservableCollection<Article> FilterArticles()
         {
             List<Article> list = new(Articles);
             foreach (var filter in Filters)
             {
                 // ToUpper() to normalize the title/keyword.
                 if (IsWhiteListed)
-                {
                     list.RemoveAll(x => !x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
-                }
                 else
-                {
                     list.RemoveAll(x => x.Title.ToUpper().Contains(filter.Keyword.ToUpper()));
-                }
             }
-            Articles = list;
+            Articles = new(list);
             return Articles;
         }
     }

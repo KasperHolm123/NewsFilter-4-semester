@@ -4,11 +4,22 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NewsFilter_4_semester"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:views="clr-namespace:NewsFilter_4_semester.Pages">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <FlyoutItem Title="Feed">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+        
+    </FlyoutItem>
+    <FlyoutItem Title="Filters">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:FilterPage}"/>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}"/>
+        </Tab>
+    </FlyoutItem>
 </Shell>

@@ -1,6 +1,4 @@
-﻿using NewsFilter_4_semester.Models;
-using NewsFilter_4_semester.ViewModels;
-using System.Collections.ObjectModel;
+﻿using NewsFilter_4_semester.ViewModels;
 
 namespace NewsFilter_4_semester
 {
