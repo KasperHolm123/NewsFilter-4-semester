@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:NewsFilter_4_semester"
-             Title="Feed"
+             Title="{Binding FilterServiceObj.Articles.Count, StringFormat='{0} Articles'}"
              mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:NewsFilter_4_semester.ViewModels"
              xmlns:model="clr-namespace:NewsFilter_4_semester.Models"
@@ -67,9 +67,6 @@
                                     <Label Text="{Binding Title}"
                                            FontSize="Medium"
                                            FontAttributes="Bold"/>
-                                    <Label Text="{Binding Link}"
-                                           FontSize="Small"
-                                           MaxLines="5"/>
                                     <Label Text="{Binding PubDate}"
                                            FontSize="Small"
                                            MaxLines="5"/>
