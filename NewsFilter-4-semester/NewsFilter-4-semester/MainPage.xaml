@@ -47,6 +47,10 @@
                      Command="{Binding RefreshCommand}">
             <CollectionView ItemsSource="{Binding FilterServiceObj.Articles}"
                             EmptyView="No articles found">
+                <CollectionView.Header>
+                    <Label Text="{Binding CurrentFeed}"
+                           TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Article">
                         <Frame Margin="10"
