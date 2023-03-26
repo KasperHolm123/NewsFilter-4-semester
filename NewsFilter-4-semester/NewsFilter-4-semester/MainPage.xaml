@@ -48,8 +48,17 @@
             <CollectionView ItemsSource="{Binding FilterServiceObj.Articles}"
                             EmptyView="No articles found">
                 <CollectionView.Header>
-                    <Label Text="{Binding CurrentFeed}"
-                           TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                    <Border WidthRequest="200"
+                            HeightRequest="40"
+                            Margin="0,8,0,0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="40,40,40,40"/>
+                        </Border.StrokeShape>
+                        <Label Text="{Binding CurrentFeed}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                    </Border>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Article">
@@ -84,7 +93,6 @@
                                 </StackLayout>
                             </Grid>
                         </Frame>
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
