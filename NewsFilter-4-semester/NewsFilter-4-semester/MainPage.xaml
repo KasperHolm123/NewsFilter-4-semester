@@ -50,12 +50,13 @@
                 <CollectionView.Header>
                     <Border WidthRequest="200"
                             HeightRequest="40"
-                            Margin="0,8,0,0">
+                            Margin="0,8,0,0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource DR_Red}, Dark={StaticResource Gray950}}">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="40,40,40,40"/>
                         </Border.StrokeShape>
                         <Label Text="{Binding CurrentFeed}"
-                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               TextColor="White"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
                     </Border>

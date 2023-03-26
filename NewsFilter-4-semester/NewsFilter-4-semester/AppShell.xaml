@@ -7,20 +7,15 @@
     xmlns:views="clr-namespace:NewsFilter_4_semester.Pages"
     BackgroundColor="{AppThemeBinding Light={StaticResource DR_Red}, Dark={StaticResource Gray950}}">
 
-    <FlyoutItem Title="Feed">
-        <Tab>
+    <TabBar>
+        <Tab Title="Feed">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
         </Tab>
-        
-    </FlyoutItem>
-    <FlyoutItem Title="Filters">
-        <Tab>
+        <Tab Title="Filters">
             <ShellContent ContentTemplate="{DataTemplate views:FilterPage}"/>
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Settings">
-        <Tab>
+        <Tab Title="Settings">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}"/>
         </Tab>
-    </FlyoutItem>
+    </TabBar>
 </Shell>
