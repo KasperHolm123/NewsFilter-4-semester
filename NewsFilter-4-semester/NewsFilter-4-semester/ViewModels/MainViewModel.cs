@@ -94,18 +94,6 @@ namespace NewsFilter_4_semester.ViewModels
         public static async Task ChangePage(string uri) => await Shell.Current.GoToAsync(uri);
 
         [RelayCommand]
-        public static async Task ReadMore(Article article)
-        {
-            var detailedArticle = new DetailedArticle()
-            {
-                Title = article.Title,
-                Link = article.Link,
-                PubDate = article.PubDate,
-            };
-            await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object>
-            {
-                { "Article", detailedArticle }
-            });
-        }
+        public static async Task ReadMore(string url) => await Browser.Default.OpenAsync(url);
     }
 }

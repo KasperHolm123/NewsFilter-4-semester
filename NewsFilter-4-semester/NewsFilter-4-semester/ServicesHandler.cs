@@ -23,7 +23,6 @@ namespace NewsFilter_4_semester
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddSingleton<SettingsPageViewModel>();
             builder.Services.AddSingleton<FilterPageViewModel>();
-            builder.Services.AddTransient<DetailsPageViewModel>();
             return builder;
         }
 
@@ -32,7 +31,6 @@ namespace NewsFilter_4_semester
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<SettingsPage>();
             builder.Services.AddSingleton<FilterPage>();
-            builder.Services.AddTransient<DetailsPage>();
             return builder;
         }
     }
